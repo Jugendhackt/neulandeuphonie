@@ -1,0 +1,25 @@
+body {
+	margin: 0;
+	font-size: 14px; 
+	font-family: "Sans Serif";
+	font-weight: normal;
+	font-style: normal;
+}
+
+p {
+	margin: 0;
+	padding: 0;
+	text-align: center;
+}
+
+.header {
+	height: 60px;
+	background: #FF3025;
+	border-style: none;
+}
+
+.content {
+	margin: 20px 0 0;
+	border-style: none;
+	font-size: 22px;
+}
