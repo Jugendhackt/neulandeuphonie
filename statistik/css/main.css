@@ -29,3 +29,8 @@ table {
 	padding: 10px;
 	border: 1px solid #000;
 }
+
+table tr td hr {
+	height: 0.15em;
+	background: #000;
+}
