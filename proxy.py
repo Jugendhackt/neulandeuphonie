@@ -13,6 +13,9 @@ import re
 from libmproxy import controller, proxy
 from libmproxy.proxy.server import ProxyServer
 import requests
+from requests_futures.sessions import FuturesSession
+import replace_images
+session = FuturesSession(max_workers=10)
 i=0
 expression=[]
 
@@ -32,33 +35,37 @@ class CensorMaster(controller.Master):
             self.shutdown()
 
     def handle_response(self, flow):
-        print(flow.request.headers)
+        flow = replace_images.replaceImage(flow)
+
         try:
             stat = {"type":"statistic", "changes":[]}
             stat['url'] = flow.request.url
             attrs = dict((x.lower(),y) for x, y in flow.response.headers)
             if 'content-type' in attrs:
-                if (attrs ['content-type'] == 'text/html'):
+                if ('text/html' in attrs ['content-type']):
+
                     #flow.response.content += ("<style>" + stylesheet + "</style>")
                     tmp = flow.response.get_decoded_content().split("</head>") 
                     tmp[0]+="<style>" + stylesheet + "</style>" + "</head>"
                     flow.response.content = "".join(tmp)
-        
-                for key,value in expression:
-                    change = {"word":"", "replaced_by":"", "count":"1"}
-                    value_rand = random.choice(value)
-                    subn_res = re.subn(key,value_rand,flow.response.get_decoded_content())
-                    flow.response.content = subn_res[0]
-                    #import pdb; pdb.set_trace()
-                    flow.reply()
-                    change['word'] = str(key.pattern)
-                    change['replaced_by'] = (str(value_rand))
-                    change['count'] = str(subn_res[1])
-                    stat['changes'].append(change)
-                req = requests.post("http://couchdb.pajowu.de/neulandeuphonie",data=json.dumps(stat),headers={'Content-type': 'application/json'})
-        
+                    if 'content-encoding' in flow.response.headers.keys():
+                        del flow.response.headers['content-encoding']
+                    for key,value in expression:
+                        change = {"word":"", "replaced_by":"", "count":"1"}
+                        value_rand = random.choice(value)
+                        subn_res = re.subn(key.pattern,value_rand,flow.response.get_decoded_content())
+                        flow.response.content = subn_res[0]
+                        #import pdb; pdb.set_trace()
+                        flow.reply()
+                        change['word'] = str(key.pattern)
+                        change['replaced_by'] = (str(value_rand))
+                        change['count'] = str(subn_res[1])
+                        stat['changes'].append(change)
+                    
+                    req = session.post("http://couchdb.pajowu.de/neulandeuphonie",data=json.dumps(stat),headers={'Content-type': 'application/json'})
         except UnicodeDecodeError, e:
             print (flow.response.get_decoded_content())
+        flow.reply()
 config = proxy.ProxyConfig(port=8080)
 server = ProxyServer(config)
 m = CensorMaster(server)
