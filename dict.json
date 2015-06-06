@@ -2,5 +2,8 @@
 	"Example":["Jugend Hackt", "42", "Mate", "Foo"],
 	"domain":["Zone"],
 	"more":["imaginary"],
-	"information":["Mate"]
+	"information":["Mate"],
+	"party":["Drogenfahndung"],
+	"g7":["Lachanfall"],
+	"\\w*ion(\\W)":["Function\\1"]
 }
