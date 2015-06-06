@@ -12,7 +12,7 @@ import json
 import re
 from libmproxy import controller, proxy
 from libmproxy.proxy.server import ProxyServer
-
+import requests
 i=0
 expression=[]
 
@@ -56,7 +56,7 @@ class CensorMaster(controller.Master):
                     change['replaced_by'] = (str(value_rand))
                     change['count'] = str(subn_res[1])
                     stat['changes'].append(change)
-                print str(json.dumps(stat))
+                req = requests.post("http://couchdb.pajowu.de/neulandeuphonie",data=json.dumps(stat),headers={'Content-type': 'application/json'})
         
         except UnicodeDecodeError, e:
             print (flow.response.content)
