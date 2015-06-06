@@ -23,3 +23,9 @@ p {
 	border-style: none;
 	font-size: 22px;
 }
+
+table {
+	margin: 10px auto;
+	padding: 10px;
+	border: 1px solid #000;
+}
