@@ -1,13 +1,4 @@
 {
-	"Example":["Jugend Hackt", "42", "Mate", "Foo"],
-	"domain":["Zone"],
-	"more":["imaginary"],
-	"information":["Mate"],
-	"party":["Drogenfahndung"],
-	"g7":["Lachanfall"],
-	"\\w*ion(\\W)":["Function\\1"],
-
-
 	"verweiger":["gewähr"],
 	"absurd":["sinnvoll"],
 	"Vorwurf":["Scherz","Witz"],
