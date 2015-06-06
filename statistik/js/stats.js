@@ -1,26 +1,20 @@
 console.log("Hello World!");
 
-$.getJSON( "./json/wortUrl.json" , function(data){ 
+$.getJSON( "http://couchdb.pajowu.de/neulandeuphonie/_design/api/_view/count_host_word_replacements?group_level=1" , function(data){ 
 	console.log(data);
 	var table = $("table.wortUrl");
-	$.each(data, function(url, wortObject){
-		var anzahlGesamt = 0;
-		$.each(wortObject, function(wort, anzahl){
-			anzahlGesamt = anzahlGesamt + anzahl;
-		})
-		var row = $("<tr></tr>");
-		row.append($("<td></td>").text(url));
-		row.append($("<td></td>").text(anzahlGesamt));
+	$.each(data.rows, function(index, entry){
+		var row = $("<tr><td>"+entry.key+"</td><td>"+entry.value+"</td></tr>");
 		table.append(row);
 	})
 	
 })
 
-$.getJSON( "./json/wortAnzahl.json" , function(data){ 
+$.getJSON( "http://couchdb.pajowu.de/neulandeuphonie/_design/api/_view/count_word_replacements?group_level=1" , function(data){ 
 	console.log(data);
 	var table = $("table.wortAnzahl");
-	$.each(data, function(wort, anzahl){
-		var row = $("<tr><td>"+wort+"</td><td>"+anzahl+"</td></tr>");
+	$.each(data.rows, function(index, entry){
+		var row = $("<tr><td>"+entry.key+"</td><td>"+entry.value+"</td></tr>");
 		table.append(row);
 	})
 	
