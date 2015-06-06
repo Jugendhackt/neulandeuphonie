@@ -32,7 +32,6 @@ class CensorMaster(controller.Master):
             self.shutdown()
 
     def handle_response(self, flow):
-        import pdb;pdb.set_trace()
         print(flow.request.headers)
         try:
             stat = {"type":"statistic", "changes":[]}
