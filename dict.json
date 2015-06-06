@@ -1,50 +1,194 @@
 {
-	"verweiger":["gewähr"],
-	"absurd":["sinnvoll"],
-	"Vorwurf":["Scherz","Witz"],
-	"Vorwürf":["Scherz","Witz"],
-	"Naivität":["Heiterkeit"],
-	"politisch":["authentisch","avantgardistisch","dichterisch","harmonisch","diametrisch","utopisch","ekstatisch","fachmännisch","fantastisch"],
-	"drastisch":["authentisch","avantgardistisch","dichterisch","harmonisch","diametrisch","utopisch","ekstatisch","fachmännisch","fantastisch"],
-	"dogmatisch":["authentisch","avantgardistisch","dichterisch","harmonisch","diametrisch","utopisch","ekstatisch","fachmännisch","fantastisch"],
-	"extremistisch":["authentisch","avantgardistisch","dichterisch","harmonisch","diametrisch","utopisch","ekstatisch","fachmännisch","fantastisch"],
-	"russisch":["authentisch","avantgardistisch","dichterisch","harmonisch","diametrisch","utopisch","ekstatisch","fachmännisch","fantastisch"],
-	"ausgegrenz":["inkludier"],
-	"nicht":["immer"],
-	"zweifel":["erfreu"],
-	"nie":["immer"],
-	"Partei":["einzig wahre Partei"],
-	"Forderung":["Schönheit"],
-	"monströs":["niedlich"],
-	"Angela Merkel":["Mutti"],
-	"Außenminister":["SonnenklarTV-Moderator"],
-	"Waffe":["Waffel"],
-	"ja":["nein"],
-	"grob":["feinfühlig"],
-	"gröb":["feinfühlig"],
-	"maliziös":["lobgepriesen"],
-	"Annexion":["Kollektivierung"],
-	"Russland":["Narnia"],
-	"Deutschland":["Land der unbegrenzten Ideen"],
-	"Gewalt":["Erquickung"],
-	"G7":["Lachanfall"],
-	"Staat":["Kuchen","Keks"],
-	"Nation":["Toilette"],
-	"antifaschistisch":["felinistisch"],
-	"anti":["pro"],
-	"\\w.*ismus(\\W)":["Tourismus\\1"],
-	"spalt":["verein","versöhn"],
-	"schlecht":["erfreulich","gerecht"],
-	"Ausbruch":["Kartoffelbrei"],
-	"Streit":["Stimmungsaufheller"],
-	"Kritik":["Muschel"],
-	"DDR":["Utopie"],
-	"Kompromiss":["Einrichtungstipp"],
-	"Ansage":["Deko"],
-	"Ukraine":["Stylistin"],
-	"Kreml":["Wodka"],
-	"schwarz":["pink"],
-	"brutal":["schön","gut"],
-	"explod":["flan","fantas"],
-	"kritisch":["prächtig","wunderbar"]
+    "explod": [
+        "flan", 
+        "fantas"
+    ], 
+    "Kritik": [
+        "Muschel"
+    ], 
+    "Streit": [
+        "Stimmungsaufheller"
+    ], 
+    "Waffe": [
+        "Waffel"
+    ], 
+    "spalt": [
+        "verein", 
+        "vers\u00f6hn"
+    ], 
+    "Kreml": [
+        "Wodka"
+    ], 
+    "anti": [
+        "pro"
+    ], 
+    "malizi\u00f6s": [
+        "lobgepriesen"
+    ], 
+    "Angela Merkel": [
+        "Mutti"
+    ], 
+    "G7": [
+        "Lachanfall"
+    ], 
+    "ausgegrenz": [
+        "inkludier"
+    ], 
+    "Vorw\u00fcrf": [
+        "Scherz", 
+        "Witz"
+    ], 
+    "kritisch": [
+        "pr\u00e4chtig", 
+        "wunderbar"
+    ], 
+    "russisch": [
+        "authentisch", 
+        "avantgardistisch", 
+        "dichterisch", 
+        "harmonisch", 
+        "diametrisch", 
+        "utopisch", 
+        "ekstatisch", 
+        "fachm\u00e4nnisch", 
+        "fantastisch"
+    ], 
+    "Nation": [
+        "Toilette"
+    ], 
+    "zweifel": [
+        "erfreu"
+    ], 
+    "drastisch": [
+        "authentisch", 
+        "avantgardistisch", 
+        "dichterisch", 
+        "harmonisch", 
+        "diametrisch", 
+        "utopisch", 
+        "ekstatisch", 
+        "fachm\u00e4nnisch", 
+        "fantastisch"
+    ], 
+    "antifaschistisch": [
+        "felinistisch"
+    ], 
+    "schwarz": [
+        "pink"
+    ], 
+    "Ukraine": [
+        "Stylistin"
+    ], 
+    "Gewalt": [
+        "Erquickung"
+    ], 
+    "verweiger": [
+        "gew\u00e4hr"
+    ], 
+    " \\\\w.*ismus(\\\\W)": [
+        "Tourismus"
+    ], 
+    "Forderung": [
+        "Sch\u00f6nheit"
+    ], 
+    "grob": [
+        "feinf\u00fchlig"
+    ], 
+    "DDR": [
+        "Utopie"
+    ], 
+    "schlecht": [
+        "erfreulich", 
+        "gerecht"
+    ], 
+    "Deutschland": [
+        "Land der unbegrenzten Ideen"
+    ], 
+    "gr\u00f6b": [
+        "feinf\u00fchlig"
+    ], 
+    "monstr\u00f6s": [
+        "niedlich"
+    ], 
+    "Ansage": [
+        "Deko"
+    ], 
+    "nie": [
+        "immer"
+    ], 
+    "ja": [
+        "nein"
+    ], 
+    "Vorwurf": [
+        "Scherz", 
+        "Witz"
+    ], 
+    "Naivit\u00e4t": [
+        "Heiterkeit"
+    ], 
+    "Annexion": [
+        "Kollektivierung"
+    ], 
+    "Ausbruch": [
+        "Kartoffelbrei"
+    ], 
+    "Staat": [
+        "Kuchen", 
+        "Keks"
+    ], 
+    "dogmatisch": [
+        "authentisch", 
+        "avantgardistisch", 
+        "dichterisch", 
+        "harmonisch", 
+        "diametrisch", 
+        "utopisch", 
+        "ekstatisch", 
+        "fachm\u00e4nnisch", 
+        "fantastisch"
+    ], 
+    "politisch": [
+        "authentisch", 
+        "avantgardistisch", 
+        "dichterisch", 
+        "harmonisch", 
+        "diametrisch", 
+        "utopisch", 
+        "ekstatisch", 
+        "fachm\u00e4nnisch", 
+        "fantastisch"
+    ], 
+    "brutal": [
+        "sch\u00f6n", 
+        "gut"
+    ], 
+    "Partei": [
+        "einzig wahre Partei"
+    ], 
+    "extremistisch": [
+        "authentisch", 
+        "avantgardistisch", 
+        "dichterisch", 
+        "harmonisch", 
+        "diametrisch", 
+        "utopisch", 
+        "ekstatisch", 
+        "fachm\u00e4nnisch", 
+        "fantastisch"
+    ], 
+    "nicht": [
+        "immer"
+    ], 
+    "absurd": [
+        "sinnvoll"
+    ], 
+    "Russland": [
+        "Narnia"
+    ], 
+    "Au\u00dfenminister": [
+        "SonnenklarTV-Moderator"
+    ], 
+    "Kompromiss": [
+        "Einrichtungstipp"
+    ]
 }
