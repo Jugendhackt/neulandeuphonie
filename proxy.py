@@ -32,7 +32,6 @@ class CensorMaster(controller.Master):
             self.shutdown()
 
     def handle_response(self, flow):
-        #import pdb;pdb.set_trace()
         print(flow.request.headers)
         try:
             stat = {"type":"statistic", "changes":[]}
@@ -41,14 +40,14 @@ class CensorMaster(controller.Master):
             if 'content-type' in attrs:
                 if (attrs ['content-type'] == 'text/html'):
                     #flow.response.content += ("<style>" + stylesheet + "</style>")
-                    tmp = flow.response.content.split("</head>") 
+                    tmp = flow.response.get_decoded_content().split("</head>") 
                     tmp[0]+="<style>" + stylesheet + "</style>" + "</head>"
                     flow.response.content = "".join(tmp)
         
                 for key,value in expression:
                     change = {"word":"", "replaced_by":"", "count":"1"}
                     value_rand = random.choice(value)
-                    subn_res = re.subn(key,value_rand,flow.response.content)
+                    subn_res = re.subn(key,value_rand,flow.response.get_decoded_content())
                     flow.response.content = subn_res[0]
                     #import pdb; pdb.set_trace()
                     flow.reply()
@@ -59,7 +58,7 @@ class CensorMaster(controller.Master):
                 req = requests.post("http://couchdb.pajowu.de/neulandeuphonie",data=json.dumps(stat),headers={'Content-type': 'application/json'})
         
         except UnicodeDecodeError, e:
-            print (flow.response.content)
+            print (flow.response.get_decoded_content())
 config = proxy.ProxyConfig(port=8080)
 server = ProxyServer(config)
 m = CensorMaster(server)
