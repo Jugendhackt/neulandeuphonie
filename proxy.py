@@ -40,15 +40,11 @@ class CensorMaster(controller.Master):
     def handle_response(self, flow):
         #flow = replace_images.replaceImage(flow)
         try:
-        #if 1==1:
-
-            stat = {"type":"statistic", "changes":[]}
-            stat['url'] = flow.request.url
+            #stat = {"type":"statistic", "changes":[]}
+            #stat['url'] = flow.request.url
             attrs = dict((x.lower(),y) for x, y in flow.response.headers)
             if 'content-type' in attrs:
                 if ('text/html' in attrs ['content-type']):
-
-                    #flow.response.content += ("<style>" + stylesheet + "</style>")
                     tmp = flow.response.get_decoded_content().split("</head>") 
                     tmp[0]+="<style>" + stylesheet + "</style>" + "</head>"
                     flow.response.content = "".join(tmp)
@@ -57,9 +53,9 @@ class CensorMaster(controller.Master):
                     for key,value in expression:
                         value_rand = random.choice(value)
                         try:
-                            subn_res = re.subn(key,value_rand,flow.response.get_decoded_content(),flags=re.UNICODE|re.IGNORECASE)
-                            if subn_res[1] > 0:
-                                words = re.findall(key,flow.response.get_decoded_content(),flags=re.IGNORECASE|re.UNICODE)
+                            flow.response.replace(key,value_rand, flags=re.IGNORECASE)
+                            """if subn_res[1] > 0:
+                                words = re.findall(key,flow.response.get_decoded_content(),flags=re.UNICODE)
                                 changes = {}
                                 for word in words:
                                     if word in changes:
@@ -71,14 +67,12 @@ class CensorMaster(controller.Master):
                                     change_dict['word'] = str(change)
                                     change_dict['replaced_by'] = (str(value_rand))
                                     change_dict['count'] = str(changes[change])
-                                    stat['changes'].append(change)
+                                    stat['changes'].append(change)"""
                         except:
-                            print(key,value_rand)
-                            print("regex"+sys.exc_info()[0])
+                            print(str(sys.exc_info()[0]))
                             
-                        flow.response.content = subn_res[0]
+                        #flow.response.content = subn_res[0]
                         #import pdb; pdb.set_trace()
-                        flow.reply()
                     
                     #req = session.post("http://couchdb.pajowu.de/neulandeuphonie",data=json.dumps(stat),headers={'Content-type': 'application/json'})
         except:
