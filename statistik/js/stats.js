@@ -1,8 +1,10 @@
 console.log("Hello World!");
+var waiting = false;
 function refreshStats() {
 	$.getJSON( "http://couchdb.pajowu.de/neulandeuphonie/_design/api/_view/count_host_word_replacements?group_level=1" , function(data){ 
 		console.log(data);
 		var table = $("table.wortUrl");
+		table.empty();
 		var valueCount = 0;
 		data.rows.sort(function(a,b){return b.value-a.value})
 		$.each(data.rows, function(index, entry){
@@ -18,6 +20,7 @@ function refreshStats() {
 	$.getJSON( "http://couchdb.pajowu.de/neulandeuphonie/_design/api/_view/count_word_replacements?group_level=1" , function(data){ 
 		console.log(data);
 		var table = $("table.wortAnzahl");
+		table.empty();
 		var valueCount = 0;
 		data.rows.sort(function(a,b){return b.value-a.value})
 		$.each(data.rows, function(index, entry){
@@ -32,11 +35,15 @@ function refreshStats() {
 //check for browser support
 if(typeof(EventSource)!=="undefined") {
 	//create an object, passing it the name and location of the server side script
-	var eSource = new EventSource("http://couchdb.pajowu.de/neulandeuphonie/_changes?filter=api/statistic&feed=");
+	var eSource = new EventSource("http://couchdb.pajowu.de/neulandeuphonie/_changes?filter=api/statistic&feed=eventsource");
 	//detect message receipt
 	eSource.onmessage = function(event) {
 		//write the received data to the page
-		refreshStats();
+		console.log("got sse")
+		if (!waiting) {
+			waiting = true
+			setInterval(function(){waiting=false;refreshStats()},1000);
+		}
 	};
 }
 else {
