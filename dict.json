@@ -74,6 +74,9 @@
         "fachm\u00e4nnisch", 
         "fantastisch"
     ], 
+    "\bnsa\b": [
+        "Anti-Terror-Organisation"
+    ], 
     "antifaschistisch": [
         "felinistisch"
     ], 
@@ -91,9 +94,6 @@
     ], 
     " \\\\w.*ismus(\\\\W)": [
         "Tourismus"
-    ], 
-    "Russland": [
-        "Narnia"
     ], 
     "Forderung": [
         "Sch\u00f6nheit"
@@ -120,8 +120,8 @@
     "Ansage": [
         "Deko"
     ], 
-    " nsa ": [
-        "Anti-Terror-Organisation"
+    "nie": [
+        "immer"
     ], 
     "ja": [
         "nein"
@@ -189,8 +189,8 @@
     "absurd": [
         "sinnvoll"
     ], 
-    "nie": [
-        "immer"
+    "Russland": [
+        "Narnia"
     ], 
     "Au\u00dfenminister": [
         "SonnenklarTV-Moderator"
