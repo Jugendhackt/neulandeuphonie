@@ -12,9 +12,6 @@
     "Waffe": [
         "Waffel"
     ], 
-    "nsa": [
-        "Anti-Terror-Organisation"
-    ], 
     "spalt": [
         "verein", 
         "vers\u00f6hn"
@@ -95,6 +92,9 @@
     " \\\\w.*ismus(\\\\W)": [
         "Tourismus"
     ], 
+    "Russland": [
+        "Narnia"
+    ], 
     "Forderung": [
         "Sch\u00f6nheit"
     ], 
@@ -120,8 +120,8 @@
     "Ansage": [
         "Deko"
     ], 
-    "nie": [
-        "immer"
+    " nsa ": [
+        "Anti-Terror-Organisation"
     ], 
     "ja": [
         "nein"
@@ -189,8 +189,8 @@
     "absurd": [
         "sinnvoll"
     ], 
-    "Russland": [
-        "Narnia"
+    "nie": [
+        "immer"
     ], 
     "Au\u00dfenminister": [
         "SonnenklarTV-Moderator"
