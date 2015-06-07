@@ -54,8 +54,8 @@ class CensorMaster(controller.Master):
                     for key,value in expression:
                         value_rand = random.choice(value)
                         try:
-                            flow.response.replace(key,value_rand, flags=re.IGNORECASE)
-                            if subn_res[1] > 0:
+                            replaces = flow.response.replace(key,value_rand, flags=re.IGNORECASE)
+                            if replaces > 0:
                                 words = re.findall(key,flow.response.get_decoded_content(),flags=re.UNICODE)
                                 changes = {}
                                 for word in words:
@@ -69,12 +69,12 @@ class CensorMaster(controller.Master):
                                     change_dict['replaced_by'] = (str(value_rand))
                                     change_dict['count'] = str(changes[change])
                                     stat['changes'].append(change)
-                        except:
-                            print(str(sys.exc_info()[0]))
+                        except Exception,e:
+                            print(e)
+                            #print(str(sys.exc_info()[0]))
                             
                         #flow.response.content = subn_res[0]
                         #import pdb; pdb.set_trace()
-                    
                     req = session.post("http://couchdb.pajowu.de/neulandeuphonie",data=json.dumps(stat),headers={'Content-type': 'application/json'})
         except:
             print(sys.exc_info()[0])
