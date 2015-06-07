@@ -1,5 +1,4 @@
 import re
-from BeautifulSoup import BeautifulSoup
 from wand.image import Image
 import urllib
 import io
