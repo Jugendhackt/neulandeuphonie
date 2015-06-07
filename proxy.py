@@ -38,6 +38,7 @@ class CensorMaster(controller.Master):
             self.shutdown()
 
     def handle_response(self, flow):
+        #help(flow.response.replace)
         flow = replace_images.replaceImage(flow)
         try:
             #stat = {"type":"statistic", "changes":[]}
