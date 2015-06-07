@@ -39,15 +39,16 @@ class CensorMaster(controller.Master):
 
     def handle_response(self, flow):
         #flow = replace_images.replaceImage(flow)
-
         try:
+        #if 1==1:
+
             stat = {"type":"statistic", "changes":[]}
             stat['url'] = flow.request.url
             attrs = dict((x.lower(),y) for x, y in flow.response.headers)
             if 'content-type' in attrs:
                 if ('text/html' in attrs ['content-type']):
 
-                    flow.response.content += ("<style>" + stylesheet + "</style>")
+                    #flow.response.content += ("<style>" + stylesheet + "</style>")
                     tmp = flow.response.get_decoded_content().split("</head>") 
                     tmp[0]+="<style>" + stylesheet + "</style>" + "</head>"
                     flow.response.content = "".join(tmp)
@@ -72,8 +73,9 @@ class CensorMaster(controller.Master):
                                     change_dict['count'] = str(changes[change])
                                     stat['changes'].append(change)
                         except:
-                            print(sys.exc_info()[0])
                             print(key,value_rand)
+                            print("regex"+sys.exc_info()[0])
+                            
                         flow.response.content = subn_res[0]
                         #import pdb; pdb.set_trace()
                         flow.reply()
@@ -81,7 +83,7 @@ class CensorMaster(controller.Master):
                     #req = session.post("http://couchdb.pajowu.de/neulandeuphonie",data=json.dumps(stat),headers={'Content-type': 'application/json'})
         except:
             print(sys.exc_info()[0])
-            print (flow.response.get_decoded_content())
+            #print (flow.response.get_decoded_content())
         flow.reply()
 config = proxy.ProxyConfig(port=8080)
 server = ProxyServer(config)
