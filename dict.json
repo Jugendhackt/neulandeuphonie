@@ -1,4 +1,9 @@
 {
+    "(Angela )?Merkel": [
+        "Mutti", 
+        "Unsere g\u00fctige Kaiserin", 
+        "Unsere g\u00fctige Kaiserin in Gottes Gnaden"
+    ], 
     "explod": [
         "flan", 
         "fantas"
@@ -6,15 +11,26 @@
     "Kritik": [
         "Muschel"
     ], 
+    "Kampf": [
+        "Karnevall"
+    ], 
     "Streit": [
         "Stimmungsaufheller"
     ], 
     "Waffe": [
         "Waffel"
     ], 
-    "spalt": [
-        "verein", 
-        "vers\u00f6hn"
+    "Polizei": [
+        "Tat\u00fctata", 
+        "Eisverk\u00e4ufer"
+    ], 
+    "Demonstrant": [
+        "Psychonaut", 
+        "Astronaut", 
+        "Asylant"
+    ], 
+    "verweiger": [
+        "gew\u00e4hr"
     ], 
     "Kreml": [
         "Wodka"
@@ -25,11 +41,22 @@
     "anti": [
         "pro"
     ], 
+    "brutal": [
+        "sch\u00f6n", 
+        "gut"
+    ], 
+    "spalt": [
+        "verein", 
+        "vers\u00f6hn"
+    ], 
     "malizi\u00f6s": [
         "lobgepriesen"
     ], 
-    "Angela Merkel": [
-        "Mutti"
+    "absurd": [
+        "sinnvoll"
+    ], 
+    "Ukraine": [
+        "Stylistin"
     ], 
     "ausgegrenz": [
         "inkludier"
@@ -53,15 +80,27 @@
         "fachm\u00e4nnisch", 
         "fantastisch"
     ], 
+    "Protest": [
+        "Montagsspaziergang"
+    ], 
     "Nation": [
         "Toilette"
+    ], 
+    "Frau": [
+        "\\(weggegendert\\)"
     ], 
     "zweifel": [
         "erfreu"
     ], 
+    "Mann": [
+        "\\(weggegendert\\)"
+    ], 
     "National Security Agency": [
         "freundliche Anti-Terror-Organisation", 
         "Sonne"
+    ], 
+    "Zensur": [
+        "Neulandeuphonie"
     ], 
     "drastisch": [
         "authentisch", 
@@ -74,23 +113,27 @@
         "fachm\u00e4nnisch", 
         "fantastisch"
     ], 
-    "\bnsa\b": [
-        "Anti-Terror-Organisation"
+    "\\bPartei\\b": [
+        "einzig wahre Partei"
     ], 
     "antifaschistisch": [
         "felinistisch"
     ], 
-    "schwarz": [
-        "pink"
+    "Schuld": [
+        "Sektsteuer", 
+        "Schaumweinsteuer"
     ], 
-    "Ukraine": [
-        "Stylistin"
+    "Ausbruch\\b": [
+        "Kartoffelbrei"
+    ], 
+    "Bombe": [
+        "Torte"
+    ], 
+    "\\bja\\b": [
+        "nein"
     ], 
     "Gewalt": [
         "Erquickung"
-    ], 
-    "verweiger": [
-        "gew\u00e4hr"
     ], 
     " \\\\w.*ismus(\\\\W)": [
         "Tourismus"
@@ -111,37 +154,49 @@
     "Deutschland": [
         "Land der unbegrenzten Ideen"
     ], 
+    "schimpf": [
+        "freu", 
+        "mal", 
+        "back"
+    ], 
     "gr\u00f6b": [
         "feinf\u00fchlig"
     ], 
-    "monstr\u00f6s": [
-        "niedlich"
+    "Fahrzeug": [
+        "Pferdegespann"
     ], 
     "Ansage": [
         "Deko"
     ], 
-    "nie": [
-        "immer"
-    ], 
-    "ja": [
-        "nein"
+    "kaum": [
+        "besonders", 
+        "m\u00fchelos"
     ], 
     "Vorwurf": [
         "Scherz", 
         "Witz"
     ], 
-    "Naivit\u00e4t": [
-        "Heiterkeit"
+    "nie": [
+        "immer"
+    ], 
+    "demonstr": [
+        "flanier", 
+        "spazier", 
+        "musizier", 
+        "komponier"
+    ], 
+    "BND": [
+        "PPV e.V.i.G."
     ], 
     "Annexion": [
         "Kollektivierung"
     ], 
-    "Ausbruch": [
-        "Kartoffelbrei"
-    ], 
     "Staat": [
         "Kuchen", 
         "Keks"
+    ], 
+    "Naivit\u00e4t": [
+        "Heiterkeit"
     ], 
     "dogmatisch": [
         "authentisch", 
@@ -154,6 +209,15 @@
         "fachm\u00e4nnisch", 
         "fantastisch"
     ], 
+    "monstr\u00f6s": [
+        "niedlich"
+    ], 
+    "\\bnein\\b": [
+        "ja"
+    ], 
+    "schwarz": [
+        "pink"
+    ], 
     "politisch": [
         "authentisch", 
         "avantgardistisch", 
@@ -164,13 +228,6 @@
         "ekstatisch", 
         "fachm\u00e4nnisch", 
         "fantastisch"
-    ], 
-    "brutal": [
-        "sch\u00f6n", 
-        "gut"
-    ], 
-    "Partei": [
-        "einzig wahre Partei"
     ], 
     "extremistisch": [
         "authentisch", 
@@ -183,11 +240,15 @@
         "fachm\u00e4nnisch", 
         "fantastisch"
     ], 
+    "Pfefferspray": [
+        "Spr\u00fchsahne"
+    ], 
     "nicht": [
         "immer"
     ], 
-    "absurd": [
-        "sinnvoll"
+    "\\bnsa\\b": [
+        "Anti-Terror-Organisation", 
+        "NASA"
     ], 
     "Russland": [
         "Narnia"
@@ -197,5 +258,9 @@
     ], 
     "Kompromiss": [
         "Einrichtungstipp"
+    ], 
+    "Obama": [
+        "Marc J. Jones", 
+        "Micheal L. Hale"
     ]
 }
