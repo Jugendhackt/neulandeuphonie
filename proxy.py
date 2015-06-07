@@ -66,7 +66,7 @@ class CensorMaster(controller.Master):
                         change['count'] = str(subn_res[1])
                         stat['changes'].append(change)
                     
-                    #req = session.post("http://couchdb.pajowu.de/neulandeuphonie",data=json.dumps(stat),headers={'Content-type': 'application/json'})
+                    req = session.post("http://couchdb.pajowu.de/neulandeuphonie",data=json.dumps(stat),headers={'Content-type': 'application/json'})
         #except:
             #print(sys.exc_info()[0])
             #print (flow.response.get_decoded_content())
