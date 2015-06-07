@@ -39,7 +39,7 @@ if(typeof(EventSource)!=="undefined") {
 	//detect message receipt
 	eSource.onmessage = function(event) {
 		//write the received data to the page
-		console.log("got sse")
+		console.log("got sse");
 		if (!waiting) {
 			waiting = true
 			setInterval(function(){waiting=false;refreshStats()},1000);
