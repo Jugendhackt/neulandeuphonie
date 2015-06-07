@@ -1,8 +1,8 @@
 {
     "(Angela )?Merkel": [
         "Mutti", 
-        "Unsere g\u00fctige Kaiserin", 
-        "Unsere g\u00fctige Kaiserin in Gottes Gnaden"
+        "Unsere g&uuml;tige Kaiserin", 
+        "Unsere g&uuml;tige Kaiserin in Gottes Gnaden"
     ], 
     "explod": [
         "flan", 
@@ -35,6 +35,9 @@
     "Kreml": [
         "Wodka"
     ], 
+    "sperr": [
+        "befrei"
+    ], 
     "G[ -]{0,1}7": [
         "Lachanfall"
     ], 
@@ -42,7 +45,7 @@
         "pro"
     ], 
     "brutal": [
-        "sch\u00f6n", 
+        "sch&ouml;n", 
         "gut"
     ], 
     "spalt": [
@@ -241,7 +244,7 @@
         "fantastisch"
     ], 
     "Pfefferspray": [
-        "Spr\u00fchsahne"
+        "Spr&uuml;hsahne"
     ], 
     "nicht": [
         "immer"
