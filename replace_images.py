@@ -47,11 +47,11 @@ def resizeImg(sourceFile, width, height):
         img.transform(resize="%d" % (width))
     else:
         img.transform(resize="x%d" % (height))  
-    wd = img.width - width
-    hd = img.height - height
+    #wd = img.width - width
+    #hd = img.height - height
     #import pdb; pdb.set_trace()
     #img.transform(crop=str(width)+"x"+str(height)+"+"+str(wd)+"+"+str(hd))
-    img.crop(left=(wd/2),top=(hd/2),width=width, height=height)                                                                                                                                                                                                                         
+    img.crop(0,0,width=width, height=height)
     #outerImg.format = img.format.lower()                                                                                                                                                                                                                                                
     #outerImg.composite(img, left=(width - img.width) / 2, top=(img.height-height) / 2)
     img.format = 'jpeg'                                                                                                                                                                                                    
