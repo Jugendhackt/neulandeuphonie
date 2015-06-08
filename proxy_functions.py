@@ -28,7 +28,7 @@ def resizeImg(sourceFile, width, height):
         img.transform(resize="x%d" % (height))  
     wd = img.width - width
     hd = img.height - height
-    img.crop(wd/2,0,width=width, height=height)
+    img.crop(wd/2,hd/2,width=width, height=height)
     img.format = 'jpeg'                                                                                                                                                                                                    
     return img
 def replaceImage(flow):
