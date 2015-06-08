@@ -1,7 +1,9 @@
-.neulandeuphonie {
+/* replaced text */
+/*.neulandeuphonie {
 	color:#000;
     background-color: black
-}
-/*.neulandeuphonie {
-    color:#F00;
 }*/
+/* highlight text */
+.neulandeuphonie {
+    color:#F00;
+}
