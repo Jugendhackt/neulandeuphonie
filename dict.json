@@ -1,8 +1,8 @@
 {
     "(Angela )?Merkel": [
         "Mutti", 
-        "Unsere g&uuml;tige Kaiserin", 
-        "Unsere g&uuml;tige Kaiserin in Gottes Gnaden"
+        "Unsere g\u00fctige Kaiserin", 
+        "Unsere g\u00fctige Kaiserin in Gottes Gnaden"
     ], 
     "explod": [
         "flan", 
@@ -32,6 +32,9 @@
     "verweiger": [
         "gew\u00e4hr"
     ], 
+    "\\bPartei\\b": [
+        "einzig wahre Partei"
+    ], 
     "Kreml": [
         "Wodka"
     ], 
@@ -41,11 +44,8 @@
     "G[ -]{0,1}7": [
         "Lachanfall"
     ], 
-    "anti": [
-        "pro"
-    ], 
     "brutal": [
-        "sch&ouml;n", 
+        "sch\u00f6n", 
         "gut"
     ], 
     "spalt": [
@@ -64,10 +64,6 @@
     "ausgegrenz": [
         "inkludier"
     ], 
-    "Vorw\u00fcrf": [
-        "Scherz", 
-        "Witz"
-    ], 
     "kritisch": [
         "pr\u00e4chtig", 
         "wunderbar"
@@ -82,6 +78,9 @@
         "ekstatisch", 
         "fachm\u00e4nnisch", 
         "fantastisch"
+    ], 
+    "\\bnie\\b": [
+        "immer"
     ], 
     "Protest": [
         "Montagsspaziergang"
@@ -105,6 +104,12 @@
     "Zensur": [
         "Neulandeuphonie"
     ], 
+    "krim": [
+        "Galaxie", 
+        "Welt", 
+        "Sonne", 
+        "Eudaimonie"
+    ], 
     "drastisch": [
         "authentisch", 
         "avantgardistisch", 
@@ -116,8 +121,8 @@
         "fachm\u00e4nnisch", 
         "fantastisch"
     ], 
-    "\\bPartei\\b": [
-        "einzig wahre Partei"
+    "Bayern": [
+        "Wei\u00dfwurstland"
     ], 
     "antifaschistisch": [
         "felinistisch"
@@ -179,8 +184,12 @@
         "Scherz", 
         "Witz"
     ], 
-    "nie": [
-        "immer"
+    "\\\\banti": [
+        "pro"
+    ], 
+    "Vorw\u00fcrf": [
+        "Scherz", 
+        "Witz"
     ], 
     "demonstr": [
         "flanier", 
@@ -193,6 +202,9 @@
     ], 
     "Annexion": [
         "Kollektivierung"
+    ], 
+    "Gipfel": [
+        "Fantasieverein"
     ], 
     "Staat": [
         "Kuchen", 
@@ -265,5 +277,9 @@
     "Obama": [
         "Marc J. Jones", 
         "Micheal L. Hale"
+    ], 
+    "block": [
+        "san", 
+        "kompon"
     ]
 }
