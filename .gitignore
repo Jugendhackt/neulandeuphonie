@@ -58,3 +58,6 @@ target/
 
 #gedit sicherheitsdateien entfernen
 *~
+
+# ini with passwords
+local.ini

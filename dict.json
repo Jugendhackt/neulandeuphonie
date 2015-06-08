@@ -1,195 +1,71 @@
 {
+    " \\\\w.*ismus(\\\\W)": [
+        "Tourismus"
+    ], 
     "(Angela )?Merkel": [
         "Mutti", 
         "Unsere g\u00fctige Kaiserin", 
         "Unsere g\u00fctige Kaiserin in Gottes Gnaden"
     ], 
-    "explod": [
-        "flan", 
-        "fantas"
+    "\\\\banti": [
+        "pro"
     ], 
-    "Kritik": [
-        "Muschel"
+    "\\bja\\b": [
+        "nein"
     ], 
-    "Kampf": [
-        "Karnevall"
+    "\\bnein\\b": [
+        "ja"
     ], 
-    "Streit": [
-        "Stimmungsaufheller"
+    "\\bnie\\b": [
+        "immer"
     ], 
-    "Waffe": [
-        "Waffel"
-    ], 
-    "Polizei": [
-        "Tat\u00fctata", 
-        "Eisverk\u00e4ufer"
-    ], 
-    "Demonstrant": [
-        "Psychonaut", 
-        "Astronaut", 
-        "Asylant"
-    ], 
-    "verweiger": [
-        "gew\u00e4hr"
+    "\\bnsa\\b": [
+        "Anti-Terror-Organisation", 
+        "NASA"
     ], 
     "\\bPartei\\b": [
         "einzig wahre Partei"
     ], 
-    "Kreml": [
-        "Wodka"
+    "absurd": [
+        "sinnvoll"
     ], 
-    "sperr": [
-        "befrei"
+    "Annexion": [
+        "Kollektivierung"
     ], 
-    "G[ -]{0,1}7": [
-        "Lachanfall"
+    "Ansage": [
+        "Deko"
+    ], 
+    "antifaschistisch": [
+        "felinistisch"
+    ], 
+    "Ausbruch\\b": [
+        "Kartoffelbrei"
+    ], 
+    "ausgegrenz": [
+        "inkludier"
+    ], 
+    "Au\u00dfenminister": [
+        "SonnenklarTV-Moderator"
+    ], 
+    "Bayern": [
+        "Wei\u00dfwurstland"
+    ], 
+    "block": [
+        "san", 
+        "kompon"
+    ], 
+    "BND": [
+        "PPV e.V.i.G."
+    ], 
+    "Bombe": [
+        "Torte"
     ], 
     "brutal": [
         "sch\u00f6n", 
         "gut"
     ], 
-    "spalt": [
-        "verein", 
-        "vers\u00f6hn"
-    ], 
-    "malizi\u00f6s": [
-        "lobgepriesen"
-    ], 
-    "absurd": [
-        "sinnvoll"
-    ], 
-    "Ukraine": [
-        "Stylistin"
-    ], 
-    "ausgegrenz": [
-        "inkludier"
-    ], 
-    "kritisch": [
-        "pr\u00e4chtig", 
-        "wunderbar"
-    ], 
-    "russisch": [
-        "authentisch", 
-        "avantgardistisch", 
-        "dichterisch", 
-        "harmonisch", 
-        "diametrisch", 
-        "utopisch", 
-        "ekstatisch", 
-        "fachm\u00e4nnisch", 
-        "fantastisch"
-    ], 
-    "\\bnie\\b": [
-        "immer"
-    ], 
-    "Protest": [
-        "Montagsspaziergang"
-    ], 
-    "Nation": [
-        "Toilette"
-    ], 
-    "Frau": [
-        "\\(weggegendert\\)"
-    ], 
-    "zweifel": [
-        "erfreu"
-    ], 
-    "Mann": [
-        "\\(weggegendert\\)"
-    ], 
-    "National Security Agency": [
-        "freundliche Anti-Terror-Organisation", 
-        "Sonne"
-    ], 
-    "Zensur": [
-        "Neulandeuphonie"
-    ], 
-    "krim": [
-        "Galaxie", 
-        "Welt", 
-        "Sonne", 
-        "Eudaimonie"
-    ], 
-    "drastisch": [
-        "authentisch", 
-        "avantgardistisch", 
-        "dichterisch", 
-        "harmonisch", 
-        "diametrisch", 
-        "utopisch", 
-        "ekstatisch", 
-        "fachm\u00e4nnisch", 
-        "fantastisch"
-    ], 
-    "Bayern": [
-        "Wei\u00dfwurstland"
-    ], 
-    "antifaschistisch": [
-        "felinistisch"
-    ], 
-    "Schuld": [
-        "Sektsteuer", 
-        "Schaumweinsteuer"
-    ], 
-    "Ausbruch\\b": [
-        "Kartoffelbrei"
-    ], 
-    "Bombe": [
-        "Torte"
-    ], 
-    "\\bja\\b": [
-        "nein"
-    ], 
-    "Gewalt": [
-        "Erquickung"
-    ], 
-    " \\\\w.*ismus(\\\\W)": [
-        "Tourismus"
-    ], 
-    "Forderung": [
-        "Sch\u00f6nheit"
-    ], 
-    "grob": [
-        "feinf\u00fchlig"
-    ], 
     "DDR": [
         "Utopie"
-    ], 
-    "schlecht": [
-        "erfreulich", 
-        "gerecht"
-    ], 
-    "Deutschland": [
-        "Land der unbegrenzten Ideen"
-    ], 
-    "schimpf": [
-        "freu", 
-        "mal", 
-        "back"
-    ], 
-    "gr\u00f6b": [
-        "feinf\u00fchlig"
-    ], 
-    "Fahrzeug": [
-        "Pferdegespann"
-    ], 
-    "Ansage": [
-        "Deko"
-    ], 
-    "kaum": [
-        "besonders", 
-        "m\u00fchelos"
-    ], 
-    "Vorwurf": [
-        "Scherz", 
-        "Witz"
-    ], 
-    "\\\\banti": [
-        "pro"
-    ], 
-    "Vorw\u00fcrf": [
-        "Scherz", 
-        "Witz"
     ], 
     "demonstr": [
         "flanier", 
@@ -197,21 +73,13 @@
         "musizier", 
         "komponier"
     ], 
-    "BND": [
-        "PPV e.V.i.G."
+    "Demonstrant": [
+        "Psychonaut", 
+        "Astronaut", 
+        "Asylant"
     ], 
-    "Annexion": [
-        "Kollektivierung"
-    ], 
-    "Gipfel": [
-        "Fantasieverein"
-    ], 
-    "Staat": [
-        "Kuchen", 
-        "Keks"
-    ], 
-    "Naivit\u00e4t": [
-        "Heiterkeit"
+    "Deutschland": [
+        "Land der unbegrenzten Ideen"
     ], 
     "dogmatisch": [
         "authentisch", 
@@ -224,16 +92,7 @@
         "fachm\u00e4nnisch", 
         "fantastisch"
     ], 
-    "monstr\u00f6s": [
-        "niedlich"
-    ], 
-    "\\bnein\\b": [
-        "ja"
-    ], 
-    "schwarz": [
-        "pink"
-    ], 
-    "politisch": [
+    "drastisch": [
         "authentisch", 
         "avantgardistisch", 
         "dichterisch", 
@@ -243,6 +102,10 @@
         "ekstatisch", 
         "fachm\u00e4nnisch", 
         "fantastisch"
+    ], 
+    "explod": [
+        "flan", 
+        "fantas"
     ], 
     "extremistisch": [
         "authentisch", 
@@ -255,31 +118,168 @@
         "fachm\u00e4nnisch", 
         "fantastisch"
     ], 
-    "Pfefferspray": [
-        "Spr&uuml;hsahne"
+    "Fahrzeug": [
+        "Pferdegespann"
     ], 
-    "nicht": [
-        "immer"
+    "Forderung": [
+        "Sch\u00f6nheit"
     ], 
-    "\\bnsa\\b": [
-        "Anti-Terror-Organisation", 
-        "NASA"
+    "Frau": [
+        "(weggegendert)"
     ], 
-    "Russland": [
-        "Narnia"
+    "G[ -]{0,1}7": [
+        "Lachanfall"
     ], 
-    "Au\u00dfenminister": [
-        "SonnenklarTV-Moderator"
+    "Gewalt": [
+        "Erquickung"
+    ], 
+    "Gipfel": [
+        "Fantasieverein"
+    ], 
+    "grob": [
+        "feinf\u00fchlig"
+    ], 
+    "gr\u00f6b": [
+        "feinf\u00fchlig"
+    ], 
+    "Kampf": [
+        "Karnevall"
+    ], 
+    "kaum": [
+        "besonders", 
+        "m\u00fchelos"
     ], 
     "Kompromiss": [
         "Einrichtungstipp"
+    ], 
+    "Kreml": [
+        "Wodka"
+    ], 
+    "krim": [
+        "Galaxie", 
+        "Welt", 
+        "Sonne", 
+        "Eudaimonie"
+    ], 
+    "Kritik": [
+        "Muschel"
+    ], 
+    "kritisch": [
+        "pr\u00e4chtig", 
+        "wunderbar"
+    ], 
+    "malizi\u00f6s": [
+        "lobgepriesen"
+    ], 
+    "Mann": [
+        "(weggegendert)"
+    ], 
+    "monstr\u00f6s": [
+        "niedlich"
+    ], 
+    "Naivit\u00e4t": [
+        "Heiterkeit"
+    ], 
+    "Nation": [
+        "Toilette"
+    ], 
+    "National Security Agency": [
+        "freundliche Anti-Terror-Organisation", 
+        "Sonne"
+    ], 
+    "nicht": [
+        "immer"
     ], 
     "Obama": [
         "Marc J. Jones", 
         "Micheal L. Hale"
     ], 
-    "block": [
-        "san", 
-        "kompon"
+    "Pfefferspray": [
+        "Spr&uuml;hsahne"
+    ], 
+    "politisch": [
+        "authentisch", 
+        "avantgardistisch", 
+        "dichterisch", 
+        "harmonisch", 
+        "diametrisch", 
+        "utopisch", 
+        "ekstatisch", 
+        "fachm\u00e4nnisch", 
+        "fantastisch"
+    ], 
+    "Polizei": [
+        "Tat\u00fctata", 
+        "Eisverk\u00e4ufer"
+    ], 
+    "Protest": [
+        "Montagsspaziergang"
+    ], 
+    "russisch": [
+        "authentisch", 
+        "avantgardistisch", 
+        "dichterisch", 
+        "harmonisch", 
+        "diametrisch", 
+        "utopisch", 
+        "ekstatisch", 
+        "fachm\u00e4nnisch", 
+        "fantastisch"
+    ], 
+    "Russland": [
+        "Narnia"
+    ], 
+    "schimpf": [
+        "freu", 
+        "mal", 
+        "back"
+    ], 
+    "schlecht": [
+        "erfreulich", 
+        "gerecht"
+    ], 
+    "Schuld": [
+        "Sektsteuer", 
+        "Schaumweinsteuer"
+    ], 
+    "schwarz": [
+        "pink"
+    ], 
+    "spalt": [
+        "verein", 
+        "vers\u00f6hn"
+    ], 
+    "sperr": [
+        "befrei"
+    ], 
+    "Staat": [
+        "Kuchen", 
+        "Keks"
+    ], 
+    "Streit": [
+        "Stimmungsaufheller"
+    ], 
+    "Ukraine": [
+        "Stylistin"
+    ], 
+    "verweiger": [
+        "gew\u00e4hr"
+    ], 
+    "Vorwurf": [
+        "Scherz", 
+        "Witz"
+    ], 
+    "Vorw\u00fcrf": [
+        "Scherz", 
+        "Witz"
+    ], 
+    "Waffe": [
+        "Waffel"
+    ], 
+    "Zensur": [
+        "Neulandeuphonie"
+    ], 
+    "zweifel": [
+        "erfreu"
     ]
 }

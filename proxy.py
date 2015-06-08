@@ -6,25 +6,32 @@ import re
 from libmproxy import controller, proxy
 from libmproxy.proxy.server import ProxyServer
 import proxy_functions
+import threading
 class CensorMaster(controller.Master):
     def __init__(self,server):
         controller.Master.__init__(self, server)
+        self.regex_flags = re.IGNORECASE
         with open("dict.json") as regexfile:
             regex_list=json.load(regexfile)
-            self.expressions = regex_list.items()
+            self.expressions = []
+            for expression,replacement_text in regex_list.items():
+                compiled_expression = re.compile(expression,self.regex_flags)
+                self.expressions.append((compiled_expression,replacement_text))
         with open("style.css") as stylesheet_file:
             self.stylesheet = stylesheet_file.read()
-        self.regex_flags = re.IGNORECASE
     def run(self):
         try:
             return controller.Master.run(self)
         except KeyboardInterrupt:
             self.shutdown()
-
     def handle_response(self, flow):
-        flow = proxy_functions.replaceImage(flow)
-        flow = proxy_functions.censorText(flow,self.expressions,self.stylesheet,self.regex_flags)
-        flow.reply()
+        def request_thread(flow):
+            flow = proxy_functions.replaceImage(flow)
+            flow = proxy_functions.censorText(flow,self.expressions,self.stylesheet)
+            flow.reply()
+        t = threading.Thread(target=request_thread, args=(flow,))
+        t.daemonize = True
+        t.start()
 config = proxy.ProxyConfig(port=8080)
 server = ProxyServer(config)
 m = CensorMaster(server)

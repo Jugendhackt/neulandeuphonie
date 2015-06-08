@@ -1,6 +1,5 @@
 import re
 from wand.image import Image
-import urllib
 import io
 import requests
 import os, random
@@ -45,7 +44,7 @@ def replaceImage(flow):
             try:
                 img = Image(file=io.BytesIO(content))
                 size = img.size
-                if size[0] > 80 and size[1] > 80:
+                if size[0] > 40 and size[1] > 40:
                     filename = random.choice(os.listdir("images"))
                     img = resizeImg("images/"+filename,size[0],size[1])
                     content = img.make_blob()
@@ -57,7 +56,7 @@ def replaceImage(flow):
             except:
                 PrintException()
     return flow
-def censorText(flow, expressions,stylesheet,flags):
+def censorText(flow, expressions,stylesheet):
     stat = {"type":"statistic", "changes":[]}
     stat['url'] = flow.request.url
     attrs = dict((x.lower(),y) for x, y in flow.response.headers)
@@ -70,8 +69,8 @@ def censorText(flow, expressions,stylesheet,flags):
             page = BeautifulSoup(flow.response.get_decoded_content())
             for key,value in expressions:
                 value_rand = "(neulandeuphonie)"+random.choice(value)+"(/neulandeuphonie)"
-                for tag in page.findAll(text=re.compile(key, flags=flags)):
-                    replace_data = replaceText(key,value_rand,unicode(tag.string),flags)
+                for tag in page.findAll(text=key):
+                    replace_data = replaceText(key,value_rand,unicode(tag.string))
                     tag.string.replace_with(replace_data[0])
                     stat['changes'].append(replace_data[1])
             if page.head != None:
@@ -83,14 +82,14 @@ def censorText(flow, expressions,stylesheet,flags):
             flow.response.replace("\\(/neulandeuphonie\\)","</span>")
             #req = session.post("http://couchdb.pajowu.de/neulandeuphonie",data=json.dumps(stat),headers={'Content-type': 'application/json'})
     return flow
-def replaceText(key, value, text, flags):
-        subn_res = re.subn(key,value,text,flags=flags)
+def replaceText(key, value, text):
+        subn_res = re.subn(key,value,text)
         text = subn_res[0]
         change_dict = None
         #print(subn_res)
         #replaces = flow.response.replace(key,value_rand, flags=re.IGNORECASE)
         if subn_res[1] > 0:
-            words = re.findall(key,text,flags=flags)
+            words = re.findall(key,text)
             changes = {}
             for word in words:
                 if word in changes:
