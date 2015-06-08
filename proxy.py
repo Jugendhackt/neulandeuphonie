@@ -7,9 +7,12 @@ from libmproxy import controller, proxy
 from libmproxy.proxy.server import ProxyServer
 import proxy_functions
 import threading
+import ConfigParser
 class CensorMaster(controller.Master):
     def __init__(self,server):
         controller.Master.__init__(self, server)
+        self.config = ConfigParser.ConfigParser()
+        self.config.read(['default.ini','local.ini'])
         self.regex_flags = re.IGNORECASE
         with open("dict.json") as regexfile:
             regex_list=json.load(regexfile)
@@ -27,7 +30,7 @@ class CensorMaster(controller.Master):
     def handle_response(self, flow):
         def request_thread(flow):
             flow = proxy_functions.replaceImage(flow)
-            flow = proxy_functions.censorText(flow,self.expressions,self.stylesheet)
+            flow = proxy_functions.censorText(flow,self.expressions,self.stylesheet,self.config.getboolean("general","send_stats"))
             flow.reply()
         t = threading.Thread(target=request_thread, args=(flow,))
         t.daemonize = True

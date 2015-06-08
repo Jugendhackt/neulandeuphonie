@@ -56,7 +56,7 @@ def replaceImage(flow):
             except:
                 PrintException()
     return flow
-def censorText(flow, expressions,stylesheet):
+def censorText(flow, expressions, stylesheet, send_stats=False):
     stat = {"type":"statistic", "changes":[]}
     stat['url'] = flow.request.url
     attrs = dict((x.lower(),y) for x, y in flow.response.headers)
@@ -70,7 +70,7 @@ def censorText(flow, expressions,stylesheet):
             for key,value in expressions:
                 value_rand = "(neulandeuphonie)"+random.choice(value)+"(/neulandeuphonie)"
                 for tag in page.findAll(text=key):
-                    replace_data = replaceText(key,value_rand,unicode(tag.string))
+                    replace_data = replaceText(key,value_rand,unicode(tag.string),send_stats)
                     tag.string.replace_with(replace_data[0])
                     stat['changes'].append(replace_data[1])
             if page.head != None:
@@ -80,25 +80,27 @@ def censorText(flow, expressions,stylesheet):
             flow.response.content = str(page)
             flow.response.replace("\\(neulandeuphonie\\)","<span class=\"neulandeuphonie\">")
             flow.response.replace("\\(/neulandeuphonie\\)","</span>")
-            #req = session.post("http://couchdb.pajowu.de/neulandeuphonie",data=json.dumps(stat),headers={'Content-type': 'application/json'})
+            if send_stats:
+                req = session.post("http://couchdb.pajowu.de/neulandeuphonie",data=json.dumps(stat),headers={'Content-type': 'application/json'})
     return flow
-def replaceText(key, value, text):
+def replaceText(key, value, text, send_stats=False):
         subn_res = re.subn(key,value,text)
         text = subn_res[0]
         change_dict = None
         #print(subn_res)
         #replaces = flow.response.replace(key,value_rand, flags=re.IGNORECASE)
-        if subn_res[1] > 0:
-            words = re.findall(key,text)
-            changes = {}
-            for word in words:
-                if word in changes:
-                    changes[word] += 1
-                else:
-                    changes[word] = 1
-            for change in changes:
-                change_dict = {"word":"", "replaced_by":"", "count":"1"}
-                change_dict['word'] = str(change)
-                change_dict['replaced_by'] = str(value)
-                change_dict['count'] = str(changes[change])
+        if send_stats:
+            if subn_res[1] > 0:
+                words = re.findall(key,text)
+                changes = {}
+                for word in words:
+                    if word in changes:
+                        changes[word] += 1
+                    else:
+                        changes[word] = 1
+                for change in changes:
+                    change_dict = {"word":"", "replaced_by":"", "count":"1"}
+                    change_dict['word'] = str(change)
+                    change_dict['replaced_by'] = str(value)
+                    change_dict['count'] = str(changes[change])
         return (text, change_dict)
