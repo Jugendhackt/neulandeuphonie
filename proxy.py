@@ -14,12 +14,18 @@ class CensorMaster(controller.Master):
         self.config = ConfigParser.ConfigParser()
         self.config.read(['default.ini','local.ini'])
         self.regex_flags = re.IGNORECASE
-        with open("dict.json") as regexfile:
-            regex_list=json.load(regexfile)
-            self.expressions = []
+        with open("tag_expressions.json") as regex_file:
+            regex_list=json.load(regex_file)
+            self.tag_expressions = []
             for expression,replacement_text in regex_list.items():
                 compiled_expression = re.compile(expression,self.regex_flags)
-                self.expressions.append((compiled_expression,replacement_text))
+                self.tag_expressions.append((compiled_expression,replacement_text))
+        with open("content_expressions.json") as regex_file:
+            regex_list=json.load(regex_file)
+            self.content_expressions = []
+            for expression,replacement_text in regex_list.items():
+                compiled_expression = re.compile(expression,self.regex_flags)
+                self.content_expressions.append((compiled_expression,replacement_text))
         with open("style.css") as stylesheet_file:
             self.stylesheet = stylesheet_file.read()
     def run(self):
@@ -30,7 +36,7 @@ class CensorMaster(controller.Master):
     def handle_response(self, flow):
         def request_thread(flow):
             flow = proxy_functions.replaceImage(flow)
-            flow = proxy_functions.censorText(flow,self.expressions,self.stylesheet,self.config.getboolean("general","send_stats"))
+            flow = proxy_functions.censorText(flow,self.tag_expressions,self.content_expressions,self.stylesheet,self.config.getboolean("general","send_stats"))
             flow.reply()
         t = threading.Thread(target=request_thread, args=(flow,))
         t.daemonize = True

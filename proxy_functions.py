@@ -62,7 +62,7 @@ def adjustCasing(original, to_adjust):
     else:
         adjusted = "(neulandeuphonie)"+to_adjust[0].lower() + to_adjust[1:]+"(/neulandeuphonie)"
     return adjusted
-def censorText(flow, expressions, stylesheet, send_stats):
+def censorText(flow, tag_expressions, content_expressions, stylesheet, send_stats):
     if send_stats:
         stat = {"type":"statistic", "changes":[]}
         stat['url'] = flow.request.url
@@ -77,7 +77,7 @@ def censorText(flow, expressions, stylesheet, send_stats):
             for tag in page.findAll(text=True):
                 if type(tag) == NavigableString:
                     string = unicode(tag.string)
-                    for key,value in expressions:
+                    for key,value in tag_expressions:
                         value_rand = random.choice(value)
                         replace_data = replaceText(key,lambda x: adjustCasing(x,value_rand),string,send_stats)
                         string = replace_data[0]
@@ -89,8 +89,10 @@ def censorText(flow, expressions, stylesheet, send_stats):
                 new_tag.string = stylesheet
                 page.head.append(new_tag)
             flow.response.content = str(page)
-            flow.response.replace("\\(neulandeuphonie\\)","<span class=\"neulandeuphonie\">")
-            flow.response.replace("\\(/neulandeuphonie\\)","</span>")
+            for key,value in content_expressions:
+                flow.response.content = re.sub(key,random.choice(value),flow.response.content)
+            #flow.response.replace("\\(neulandeuphonie\\)","<span class=\"neulandeuphonie\">")
+            #flow.response.replace("\\(/neulandeuphonie\\)","</span>")
             if send_stats:
                 req = session.post("http://couchdb.pajowu.de/neulandeuphonie",data=json.dumps(stat),headers={'Content-type': 'application/json'})
     return flow
