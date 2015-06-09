@@ -7,6 +7,6 @@ for i in data['rows']:
     rep[i['key']] = []
     for value in i['value']:
         rep[i['key']].append(value)
-with open("dict.json","w") as dictfile:
+with open("tag_expressions.json","w") as dictfile:
     json.dump(rep,dictfile,indent=4)
 #import pdb;pdb.set_trace()
