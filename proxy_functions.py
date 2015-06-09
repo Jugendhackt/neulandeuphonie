@@ -7,7 +7,7 @@ import sys
 from libmproxy.protocol.http import HTTPResponse
 from netlib.odict import ODictCaseless
 import StringIO
-from bs4 import BeautifulSoup,Tag
+from bs4 import BeautifulSoup,NavigableString
 import linecache
 def PrintException():
     exc_type, exc_obj, tb = sys.exc_info()
@@ -56,9 +56,10 @@ def replaceImage(flow):
             except:
                 PrintException()
     return flow
-def censorText(flow, expressions, stylesheet, send_stats=False):
-    stat = {"type":"statistic", "changes":[]}
-    stat['url'] = flow.request.url
+def censorText(flow, expressions, stylesheet, send_stats):
+    if send_stats:
+        stat = {"type":"statistic", "changes":[]}
+        stat['url'] = flow.request.url
     attrs = dict((x.lower(),y) for x, y in flow.response.headers)
     if 'content-type' in attrs:
         if ('text/html' in attrs['content-type']):
@@ -67,12 +68,16 @@ def censorText(flow, expressions, stylesheet, send_stats=False):
                 flow.response.content = flow.response.get_decoded_content()
                 del flow.response.headers['content-encoding']
             page = BeautifulSoup(flow.response.get_decoded_content())
-            for key,value in expressions:
-                value_rand = "(neulandeuphonie)"+random.choice(value)+"(/neulandeuphonie)"
-                for tag in page.findAll(text=key):
-                    replace_data = replaceText(key,value_rand,unicode(tag.string),send_stats)
-                    tag.string.replace_with(replace_data[0])
-                    stat['changes'].append(replace_data[1])
+            for tag in page.findAll(text=True):
+                if type(tag) == NavigableString:
+                    string = unicode(tag.string)
+                    for key,value in expressions:
+                        value_rand = random.choice(value)
+                        replace_data = replaceText(key,lambda x: adjustCasing(x,value_rand),string,send_stats)
+                        string = replace_data[0]
+                        if send_stats:
+                            stats['changes'].append(replace_data[1])
+                    tag.string.replace_with(string)
             if page.head != None:
                 new_tag = page.new_tag("style", type="text/css")
                 new_tag.string = stylesheet
@@ -84,12 +89,12 @@ def censorText(flow, expressions, stylesheet, send_stats=False):
                 req = session.post("http://couchdb.pajowu.de/neulandeuphonie",data=json.dumps(stat),headers={'Content-type': 'application/json'})
     return flow
 def replaceText(key, value, text, send_stats=False):
-        subn_res = re.subn(key,value,text)
-        text = subn_res[0]
         change_dict = None
         #print(subn_res)
         #replaces = flow.response.replace(key,value_rand, flags=re.IGNORECASE)
         if send_stats:
+            subn_res = re.subn(key,value,text)
+            text = subn_res[0]
             if subn_res[1] > 0:
                 words = re.findall(key,text)
                 changes = {}
@@ -103,4 +108,6 @@ def replaceText(key, value, text, send_stats=False):
                     change_dict['word'] = str(change)
                     change_dict['replaced_by'] = str(value)
                     change_dict['count'] = str(changes[change])
+        else:
+            text = re.sub(key,value,text)
         return (text, change_dict)
