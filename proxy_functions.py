@@ -56,6 +56,12 @@ def replaceImage(flow):
             except:
                 PrintException()
     return flow
+def adjustCasing(original, to_adjust):
+    if original.group()[0].isupper():
+        adjusted = "(neulandeuphonie)"+to_adjust.capitalize()+"(/neulandeuphonie)"
+    else:
+        adjusted = "(neulandeuphonie)"+to_adjust[0].lower() + to_adjust[1:]+"(/neulandeuphonie)"
+    return adjusted
 def censorText(flow, expressions, stylesheet, send_stats):
     if send_stats:
         stat = {"type":"statistic", "changes":[]}
