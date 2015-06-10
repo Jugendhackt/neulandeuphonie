@@ -2,7 +2,7 @@
 An censoring proxy that replaces bad words with good words and all images with images of cats (everybody loves cats).
 
 ## Installing
-To install it is recommended to create a python2 virtualenv (env/ is already in .gitignore) and activate it. Python3 is only supported by the beta . You have to install the virtualenv tool. Most distributions have it in packages named ```python-virtualenv``` or similar. 
+To install it is recommended to create a python2 virtualenv (env/ is already in .gitignore) and activate it. You have to install the virtualenv tool. Most distributions have it in packages named ```python-virtualenv``` or similar. 
 
     virtualenv --python python2 env # create virtualenv
     source env/bin/activate
