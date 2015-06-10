@@ -26,8 +26,6 @@ class CensorMaster(controller.Master):
             for expression,replacement_text in regex_list.items():
                 compiled_expression = re.compile(expression,self.regex_flags)
                 self.content_expressions.append((compiled_expression,replacement_text))
-        with open("style.css") as stylesheet_file:
-            self.stylesheet = stylesheet_file.read()
     def run(self):
         try:
             return controller.Master.run(self)
@@ -36,7 +34,7 @@ class CensorMaster(controller.Master):
     def handle_response(self, flow):
         def request_thread(flow):
             flow = proxy_functions.replaceImage(flow)
-            flow = proxy_functions.censorText(flow,self.tag_expressions,self.content_expressions,self.stylesheet,self.config.getboolean("general","send_stats"))
+            flow = proxy_functions.censorText(flow,self.tag_expressions,self.content_expressions,self.config.get("general","stylesheet_file"),self.config.getboolean("general","send_stats"))
             flow.reply()
         t = threading.Thread(target=request_thread, args=(flow,))
         t.daemonize = True

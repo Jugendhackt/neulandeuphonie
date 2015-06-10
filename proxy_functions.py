@@ -84,13 +84,11 @@ def censorText(flow, tag_expressions, content_expressions, stylesheet, send_stat
                         if send_stats:
                             stats['changes'].append(replace_data[1])
                     tag.string.replace_with(string)
-            if page.head != None:
-                new_tag = page.new_tag("style", type="text/css")
-                new_tag.string = stylesheet
-                page.head.append(new_tag)
+            page = injectCSS(page)
             flow.response.content = str(page)
             for key,value in content_expressions:
                 flow.response.content = re.sub(key,random.choice(value),flow.response.content)
+
             #flow.response.replace("\\(neulandeuphonie\\)","<span class=\"neulandeuphonie\">")
             #flow.response.replace("\\(/neulandeuphonie\\)","</span>")
             if send_stats:
@@ -119,3 +117,14 @@ def replaceText(key, value, text, send_stats=False):
         else:
             text = re.sub(key,value,text)
         return (text, change_dict)
+
+def injectCSS(page,css_file):
+    if type(page) != BeautifulSoup:
+        page = BeautifulSoup(page)
+    with open("styles"+css_file+".css") as stylesheet_file:
+        stylesheet = stylesheet_file.read()
+    if page.head != None:
+        new_tag = page.new_tag("style", type="text/css")
+        new_tag.string = stylesheet
+        page.head.append(new_tag)
+    return page
