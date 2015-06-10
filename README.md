@@ -10,13 +10,7 @@ To install it is recommended to create a python2 virtualenv (env/ is already in 
 After that you can install the dependencies from the requirements.txt via
 
     pip install -r requirements.txt
-
-If you use python3 you have to do
-
-    pip install --pre -r requirements.txt
     
-because configparser only has a python3 compatible beta.
-
 ## Running it
 To run neulandeuphonie you simply start the proxy.py executing
     
