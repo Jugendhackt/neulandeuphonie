@@ -121,7 +121,7 @@ def replaceText(key, value, text, send_stats=False):
 def injectCSS(page,css_file):
     if type(page) != BeautifulSoup:
         page = BeautifulSoup(page)
-    with open("styles"+css_file+".css") as stylesheet_file:
+    with open("styles/"+css_file+".css") as stylesheet_file:
         stylesheet = stylesheet_file.read()
     if page.head != None:
         new_tag = page.new_tag("style", type="text/css")
