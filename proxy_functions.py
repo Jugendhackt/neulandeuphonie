@@ -84,7 +84,7 @@ def censorText(flow, tag_expressions, content_expressions, stylesheet, send_stat
                         if send_stats:
                             stats['changes'].append(replace_data[1])
                     tag.string.replace_with(string)
-            page = injectCSS(page)
+            page = injectCSS(page,stylesheet)
             flow.response.content = str(page)
             for key,value in content_expressions:
                 flow.response.content = re.sub(key,random.choice(value),flow.response.content)
