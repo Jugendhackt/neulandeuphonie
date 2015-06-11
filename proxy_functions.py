@@ -63,12 +63,12 @@ def adjustCasing(original, to_adjust):
         adjusted = "(neulandeuphonie)"+to_adjust[0].lower() + to_adjust[1:]+"(/neulandeuphonie)"
     return adjusted
 def censorText(flow, tag_expressions, content_expressions, stylesheet, send_stats):
-    if send_stats:
-        stat = {"type":"statistic", "changes":[]}
-        stat['url'] = flow.request.url
     attrs = dict((x.lower(),y) for x, y in flow.response.headers)
     if 'content-type' in attrs:
         if ('text/html' in attrs['content-type']):
+            if send_stats:
+                stat = {"type":"statistic", "changes":[]}
+                stat['url'] = flow.request.url
             flow.response.headers['content-type'] = ["text/html"]
             if 'content-encoding' in flow.response.headers.keys():
                 flow.response.content = flow.response.get_decoded_content()
