@@ -74,20 +74,24 @@ def censorText(flow, tag_expressions, content_expressions, stylesheet, send_stat
                 flow.response.content = flow.response.get_decoded_content()
                 del flow.response.headers['content-encoding']
             page = BeautifulSoup(flow.response.get_decoded_content())
-            for tag in page.findAll(text=True):
-                if type(tag) == NavigableString:
-                    string = unicode(tag.string)
-                    for key,value in tag_expressions:
-                        value_rand = random.choice(value)
-                        replace_data = replaceText(key,lambda x: adjustCasing(x,value_rand),string,send_stats)
-                        string = replace_data[0]
-                        if send_stats:
-                            stats['changes'].append(replace_data[1])
-                    tag.string.replace_with(string)
+            lang = detectLanguage(page)
+            lang = lang if lang in tag_expressions or lang in content_expressions else tag_expressions['fallback']
+            if lang in tag_expressions:
+                for tag in page.findAll(text=True):
+                    if type(tag) == NavigableString:
+                        string = unicode(tag.string)
+                        for key,value in tag_expressions[lang]:
+                            value_rand = random.choice(value)
+                            replace_data = replaceText(key,lambda x: adjustCasing(x,value_rand),string,send_stats)
+                            string = replace_data[0]
+                            if send_stats:
+                                stats['changes'].append(replace_data[1])
+                        tag.string.replace_with(string)
             page = injectCSS(page,stylesheet)
             flow.response.content = str(page)
-            for key,value in content_expressions:
-                flow.response.content = re.sub(key,random.choice(value),flow.response.content)
+            if lang in content_expressions:
+                for key,value in content_expressions[lang]:
+                    flow.response.content = re.sub(key,random.choice(value),flow.response.content)
 
             #flow.response.replace("\\(neulandeuphonie\\)","<span class=\"neulandeuphonie\">")
             #flow.response.replace("\\(/neulandeuphonie\\)","</span>")
@@ -128,3 +132,5 @@ def injectCSS(page,css_file):
         new_tag.string = stylesheet
         page.head.append(new_tag)
     return page
+def detectLanguage(page):
+    pass
