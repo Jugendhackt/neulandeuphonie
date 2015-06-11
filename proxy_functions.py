@@ -75,7 +75,7 @@ def adjustCasing(original, to_adjust):
     return adjusted
 
 
-def censorText(flow, tag_expressions, content_expressions, stylesheet, send_stats):
+def censorText(flow, tag_expressions, content_expressions, stylesheet, send_stats, replace=False):
     attrs = dict((x.lower(), y) for x, y in flow.response.headers)
     if 'content-type' in attrs:
         if ('text/html' in attrs['content-type']):
@@ -95,7 +95,10 @@ def censorText(flow, tag_expressions, content_expressions, stylesheet, send_stat
                         string = unicode(tag.string)
                         for key, value in tag_expressions[lang]:
                             value_rand = random.choice(value)
-                            replace_data = replaceText(key, lambda x: adjustCasing(x, value_rand), string, send_stats)
+                            if not replace:
+                                replace_data = replaceText(key, r'(neulandeuphonie)\g<0>(/neulandeuphonie)', string, send_stats)
+                            else:
+                                replace_data = replaceText(key, lambda x: adjustCasing(x, value_rand), string, send_stats)
                             string = replace_data[0]
                             if send_stats:
                                 stats['changes'].append(replace_data[1])
@@ -106,8 +109,8 @@ def censorText(flow, tag_expressions, content_expressions, stylesheet, send_stat
                 for key, value in content_expressions[lang]:
                     flow.response.content = re.sub(key, random.choice(value), flow.response.content)
 
-            #flow.response.replace("\\(neulandeuphonie\\)","<span class=\"neulandeuphonie\">")
-            # flow.response.replace("\\(/neulandeuphonie\\)","</span>")
+            flow.response.replace("\\(neulandeuphonie\\)","<span class=\"neulandeuphonie\">")
+            flow.response.replace("\\(/neulandeuphonie\\)","</span>")
             if send_stats:
                 req = session.post("http://couchdb.pajowu.de/neulandeuphonie", data=json.dumps(stat), headers={'Content-type': 'application/json'})
     return flow

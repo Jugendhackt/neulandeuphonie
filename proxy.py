@@ -48,7 +48,7 @@ class CensorMaster(controller.Master):
     def handle_response(self, flow):
         def request_thread(flow):
             flow = proxy_functions.replaceImage(flow)
-            flow = proxy_functions.censorText(flow, self.tag_expressions, self.content_expressions, self.config.get("general", "stylesheet_file"), self.config.getboolean("general", "send_stats"))
+            flow = proxy_functions.censorText(flow, self.tag_expressions, self.content_expressions, self.config.get("general", "stylesheet_file"), self.config.getboolean("general", "send_stats"), self.config.getboolean("general","replace"))
             flow.reply()
         t = threading.Thread(target=request_thread, args=(flow,))
         t.daemonize = True
