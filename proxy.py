@@ -34,6 +34,7 @@ class CensorMaster(controller.Master):
                 for expression,replacement_text in regex_list.items():
                     compiled_expression = re.compile(expression,self.regex_flags)
                     self.content_expressions[lang].append((compiled_expression,replacement_text))
+    print("started, listining on port 8080")
     def run(self):
         try:
             return controller.Master.run(self)
