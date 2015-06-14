@@ -1,7 +1,7 @@
 console.log("Hello World!");
 var waiting = false;
 function refreshStats() {
-	$.getJSON("http://couchdb.pajowu.de/neulandeuphonie/_design/api/_view/count_host_word_replacements?group_level=1", function(data){ 
+	$.getJSON("http://couchdb.pajowu.de/neulandeuphonie/_design/api/_view/count_host_word_replacements?group_level=1", function(data){
 		var table = $("table.wortUrl");
 		table.empty();
 
@@ -27,20 +27,28 @@ function refreshStats() {
 		})
 
 		//make new table with all same keys summarized
-		var repeats = [];
+		var newObj = {};
+		for(i in data.rows){
+ 			var item = data.rows[i];
+    			if(newObj[item.key[0]] === undefined){
+        			newObj[item.key[0]] = 0;
+    			}
+   			 newObj[item.key[0]] += item.value;
+		}
 
-		data.rows = data.rows.filter(function(b){
-		var exists = repeats.indexOf(b.key[0]) > -1;
-		repeats.push(b.key[0]);
-		return !exists
-		})
+		var result = {};
+		result.rows = [];
+		for(i in newObj){
+   			result.rows.push({'key':i,'value':newObj[i]});
+		}
+
 
 		//sort table
-		data.rows.sort(function(a,b){return b.value-a.value})
+		result.rows.sort(function(a,b){return b.value-a.value})
 
 		//draw table
 		var valueCount = 0;
-		$.each(data.rows, function(index, entry){
+		$.each(result.rows, function(index, entry){
 			valueCount += entry.value
 			var row = $("<tr><td>"+entry.key+"</td><td>"+entry.value+"</td></tr>");
 			table.append(row);
