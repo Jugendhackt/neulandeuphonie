@@ -26,6 +26,15 @@ function refreshStats() {
 			}
 		})
 
+		//make new table with all same keys summarized
+		var repeats = [];
+
+		data.rows = data.rows.filter(function(b){
+		var exists = repeats.indexOf(b.key[0]) > -1;
+		repeats.push(b.key[0]);
+		return !exists
+		})
+
 		//sort table
 		data.rows.sort(function(a,b){return b.value-a.value})
 
