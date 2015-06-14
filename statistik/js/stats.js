@@ -8,10 +8,22 @@ function refreshStats() {
 		var tableHost = $("table.hostName");
 		tableHost.empty();
 		$.each(data.rows, function(index, entry){
+	
+			//split key into parts seperated at points
 			var hn = entry.key[0].split('.').reverse();
 			var hostname = hn[1] + "." + hn[0];
-			var hostRow = $("<tr><td>"+hostname+"</td><td>"+entry.value+"</td></tr>");
-			tableHost.append(hostRow);
+
+			//check if hostname is a ip
+			var isIp = 0;
+			for (var i = 0; i < 10; i++) {
+				if (hn[0].charAt(0) == i) {
+					isIp = 1;
+					i = 10;
+				}
+			}
+			if (isIp == 0) {
+				entry.key[0] = hostname;
+			}
 		})
 
 		//sort table
