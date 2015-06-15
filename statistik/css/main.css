@@ -19,7 +19,7 @@ p {
 }
 
 .content {
-	margin: 20px 0 0;
+	margin: 20px 0 auto;
 	border-style: none;
 	font-size: 22px;
 }
