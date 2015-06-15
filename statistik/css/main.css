@@ -19,7 +19,7 @@ p {
 }
 
 .content {
-	margin: 20px 0 auto;
+	margin: 20px 0;
 	border-style: none;
 	font-size: 22px;
 }
@@ -33,4 +33,9 @@ table {
 table tr td hr {
 	height: 0.15em;
 	background: #000;
+}
+
+.wortUrl {
+	margin: 0 auto;
+	width: 960px;
 }
