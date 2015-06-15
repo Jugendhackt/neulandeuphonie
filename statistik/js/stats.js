@@ -46,11 +46,16 @@ function refreshStats() {
 			     "name": "hostname",
 			     "children": [
 			     ]};
+		var nOfEntry = 0;
+		var valueOfEntry = 0;
 		for (i in newObj) {
-			chart.children.push({'name':i,'size':newObj[i]});
+			nOfEntry += 1;
+			valueOfEntry += newObj[i];
 		}
-
-		console.log(chart);
+		var minInclude = valueOfEntry / nOfEntry * 0.5;
+		for (i in newObj) {
+			if (newObj[i] >= minInclude) chart.children.push({'name':i,'size':newObj[i]});
+		}
 
 		//draw d3 chart
 		var diameter = 960,
