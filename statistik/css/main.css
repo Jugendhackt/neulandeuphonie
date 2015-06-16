@@ -24,7 +24,7 @@ p {
 	font-size: 22px;
 }
 
-table {
+/*table {
 	margin: 10px auto;
 	padding: 10px;
 	border: 1px solid #000;
@@ -33,7 +33,7 @@ table {
 table tr td hr {
 	height: 0.15em;
 	background: #000;
-}
+}*/
 
 .wortUrl {
 	margin: 0 auto;

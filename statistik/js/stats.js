@@ -46,13 +46,12 @@ function refreshStats() {
 		}
 
 		//draw d3 chart
-		var diameter = 960,
+		var diameter = $("div#wortUrlContent").width(),
 		format = d3.format(",d"),
     		color = d3.scale.category20c();
-
 		var bubble = d3.layout.pack()
     			.sort(null)
-    			.size([diameter, diameter])
+    			.size([diameter,diameter])
 			.padding(1.5);
 		var svg = d3.select("div#wortUrlContent").append("svg")
 			.attr("width", diameter)
