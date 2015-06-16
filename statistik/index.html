@@ -33,8 +33,8 @@
 
 		            <div class="collapse navbar-collapse" id="navbar-collapse-main">
 		                <ul class="nav navbar-nav navbar-right page-scroll">
-		                    <li class="active"><a href="#wortUrl">Wort Url</a></li>
-		                    <li><a href="#wortAnzahl">Wort Anzahl</a></li>
+		                    <li class="active"><a href="#replaced_words">Ersetze Wörter</a></li>
+		                    <!--<li><a href="#wortAnzahl">Wort Anzahl</a></li>-->
 		                </ul>
 		            </div><!-- /.navbar-collapse -->
 		        </div><!-- /.container-fluid -->
@@ -42,15 +42,16 @@
 		</div>
 
 		<div class="content">
-			<div class="pad-section col-md-8" id="wortUrl">
-				<p style="color: #000;">Anzahl der ersetzten Wörter pro URL</p>
-				<div id="wortUrlContent"></div>
+			<div class="replaced_words">
+				<div class="pad-section col-md-8">
+					<p style="color: #000;">Anzahl der ersetzten Wörter pro URL</p>
+					<div id="wortUrlContent"></div>
+				</div>
+				<div class="pad-section col-md-4">
+					<p style="color: #000;">Ersetzte Wörter und Anzahl</p>
+					<table class="table table-striped" id="wortAnzahlContent"></table>
+				</div>
 			</div>
-			<div class="pad-section col-md-4" id="wortAnzahl">
-				<p style="color: #000;">Ersetzte Wörter und Anzahl</p>
-				<table class="table table-striped" id="wortAnzahlContent"></table>
-			</div>
-
 		</div>
 		<script src="./js/scroll.js"></script>
 	</body>
