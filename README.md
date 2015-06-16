@@ -20,5 +20,5 @@ It will start a proxy on *:8080 which you can set in your browser.
 
 ## Examples
 
-![original](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 1")
-![censored](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 1")
+![original](https://github.com/Jugendhackt/neulandeuphonie/raw/master/public/original.png "Logo Title Text 1")
+![censored](https://github.com/Jugendhackt/neulandeuphonie/raw/master/public/censored.png "Logo Title Text 1")
