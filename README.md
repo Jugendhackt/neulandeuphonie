@@ -20,5 +20,4 @@ It will start a proxy on *:8080 which you can set in your browser.
 
 ## Examples
 
-![original](https://github.com/Jugendhackt/neulandeuphonie/raw/master/public/original.png "Logo Title Text 1")
-![censored](https://github.com/Jugendhackt/neulandeuphonie/raw/master/public/censored.png "Logo Title Text 1")
+![Example](https://github.com/Jugendhackt/neulandeuphonie/raw/master/public/combined.png "Example 1")
