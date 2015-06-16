@@ -104,7 +104,7 @@ function refreshStats() {
 			var row = $("<tr><td>"+entry.key+"</td><td>"+entry.value+"</td></tr>");
 			table.append(row);
 		})
-		var row = $("<tr><td></td><td><hr/></td></tr>		<tr><td>Gesamt</td><td>"+valueCount+"</td></tr>");
+		var row = $("<tr style=\"border-top: 1px solid #000;\"><td>Gesamt</td><td>"+valueCount+"</td></tr>");
 		table.append(row);
 	})
 }
