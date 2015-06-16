@@ -54,8 +54,7 @@ function refreshStats() {
     			.sort(null)
     			.size([diameter, diameter])
 			.padding(1.5);
-
-		var svg = d3.select("div.wortUrl").append("svg")
+		var svg = d3.select("div#wortUrlContent").append("svg")
 			.attr("width", diameter)
 			.attr("height", diameter)
 			.attr("class", "bubble");
@@ -97,7 +96,7 @@ function refreshStats() {
 
 	$.getJSON( "http://couchdb.pajowu.de/neulandeuphonie/_design/api/_view/count_word_replacements?group_level=1" , function(data){ 
 		
-		var table = $("table.wortAnzahl");
+		var table = $("table#wortAnzahlContent");
 		table.empty();
 		var valueCount = 0;
 		data.rows.sort(function(a,b){return b.value-a.value})

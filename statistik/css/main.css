@@ -39,3 +39,6 @@ table tr td hr {
 	margin: 0 auto;
 	width: 960px;
 }
+.pad-section {
+  padding: 50px 0;
+}
