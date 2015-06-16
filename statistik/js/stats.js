@@ -1,15 +1,10 @@
 var waiting = false;
 function refreshStats() {
 	$.getJSON("http://couchdb.pajowu.de/neulandeuphonie/_design/api/_view/count_host_word_replacements?group_level=1", function(data){
-		//var table = $("table.wortUrl");
-		//table.empty();
-
 		$.each(data.rows, function(index, entry){
-	
 			//split key into parts seperated at points
 			var hn = entry.key[0].split('.').reverse();
 			var hostname = hn[1] + "." + hn[0];
-
 			//check if hostname is a ip
 			if (!/[0-9]/.test(hn[0].charAt(0))) entry.key[0] = hostname;
 		})
