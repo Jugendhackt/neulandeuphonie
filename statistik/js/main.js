@@ -1,26 +1,20 @@
-var waiting = false;
-function refreshStats() {
-	$.getJSON("http://couchdb.pajowu.de/neulandeuphonie/_design/api/_view/count_host_word_replacements?group_level=1", function(data){
-		$.each(data.rows, function(index, entry){
-			//split key into parts seperated at points
-			var hn = entry.key[0].split('.').reverse();
-			var hostname = hn[1] + "." + hn[0];
-			//check if hostname is a ip
-			if (!/[0-9]/.test(hn[0].charAt(0))) entry.key[0] = hostname;
-		})
-
+function drawChart(divstruct, data) {
+		
 		//make new table with all same keys summarized
+		var diff = 0;
+		if (/\[/.test(data.rows[0].key)) diff = 1;
 		var newObj = {};
 		for(i in data.rows){
  			var item = data.rows[i];
-    			if(newObj[item.key[0]] === undefined) newObj[item.key[0]] = 0;
-   			newObj[item.key[0]] += item.value;
+			var item2;
+			if (diff) item2 = item.key[0];
+			else item2 = item.key;
+    			if(newObj[item2] === undefined) newObj[item2] = 0;
+   			newObj[item2] += item.value;
 		}
-
 		var result = {};
 		result.rows = [];
 		for(i in newObj) result.rows.push({'key':i,'value':newObj[i]});
-
 
 		//sort table
 		result.rows.sort(function(a,b){return b.value-a.value})
@@ -40,8 +34,9 @@ function refreshStats() {
 			if (newObj[i] >= minInclude) chart.children.push({'name':i,'size':newObj[i]});
 		}
 
-		//draw d3 chart
-		var diameter = $("div#wortUrlContent").width(),
+
+		//draw chart
+		var diameter = $(divstruct).width(),
 		format = d3.format(",d"),
     		color = d3.scale.category20c();
 		var bubble = d3.layout.pack()
@@ -86,6 +81,32 @@ function refreshStats() {
 		}
 
 		d3.select(self.frameElement).style("height", diameter + "px");
+}
+
+var waiting = false;
+function refreshStats() {
+	$.getJSON("http://couchdb.pajowu.de/neulandeuphonie/_design/api/_view/count_host_word_replacements?group_level=1", function(data){
+		$.each(data.rows, function(index, entry){
+			//split key into parts seperated at points
+			var hn = entry.key[0].split('.').reverse();
+			var hostname = hn[1] + "." + hn[0];
+			//check if hostname is a ip
+			if (!/[0-9]/.test(hn[0].charAt(0))) entry.key[0] = hostname;
+		})
+
+		var table = $("table#wortUrlContent");
+		table.empty();
+		var valueCount = 0;
+		data.rows.sort(function(a,b){return b.value-a.value})
+		$.each(data.rows, function(index, entry){
+			valueCount = valueCount + entry.value
+			var row = $("<tr><td>"+entry.key+"</td><td>"+entry.value+"</td></tr>");
+			table.append(row);
+		})
+		var row = $("<tr style=\"border-top: 1px solid #000;\"><td>Gesamt</td><td>"+valueCount+"</td></tr>");
+		table.append(row);
+
+		drawChart("div#wortUrlContent", data);
 		})
 
 	$.getJSON( "http://couchdb.pajowu.de/neulandeuphonie/_design/api/_view/count_word_replacements?group_level=1" , function(data){ 
@@ -101,10 +122,13 @@ function refreshStats() {
 		})
 		var row = $("<tr style=\"border-top: 1px solid #000;\"><td>Gesamt</td><td>"+valueCount+"</td></tr>");
 		table.append(row);
+
+		drawChart("div#wortAnzahlContent", data);
 	})
 }
 
 refreshStats();
+
 $(window).scroll(function() {
     var windscroll = $(window).scrollTop();
 

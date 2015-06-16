@@ -24,21 +24,14 @@ p {
 	font-size: 22px;
 }
 
-/*table {
-	margin: 10px auto;
-	padding: 10px;
-	border: 1px solid #000;
-}
-
-table tr td hr {
-	height: 0.15em;
-	background: #000;
-}*/
-
 .wortUrl {
 	margin: 0 auto;
 	width: 960px;
 }
 .pad-section {
   padding: 50px 0;
+}
+
+.bold {
+	font-weight: 600;
 }
