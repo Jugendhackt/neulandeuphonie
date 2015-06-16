@@ -17,3 +17,8 @@ To run neulandeuphonie you simply start the proxy.py executing
     python proxy.py
 
 It will start a proxy on *:8080 which you can set in your browser.
+
+## Examples
+
+![original](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 1")
+![censored](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 1")
