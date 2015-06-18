@@ -1,4 +1,4 @@
-function drawChart(divstruct, data) {
+function drawChart(struct, data) {
 		
 		//make new table with all same keys summarized
 		var diff = 0;
@@ -34,16 +34,15 @@ function drawChart(divstruct, data) {
 			if (newObj[i] >= minInclude) chart.children.push({'name':i,'size':newObj[i]});
 		}
 
-
 		//draw chart
-		var diameter = $(divstruct).width(),
+		var diameter = $(struct).width(),
 		format = d3.format(",d"),
     		color = d3.scale.category20c();
 		var bubble = d3.layout.pack()
     			.sort(null)
     			.size([diameter,diameter])
 			.padding(1.5);
-		var svg = d3.select("div#wortUrlContent").append("svg")
+		var svg = d3.select(struct).append("svg")
 			.attr("width", diameter)
 			.attr("height", diameter)
 			.attr("class", "bubble");
@@ -83,7 +82,20 @@ function drawChart(divstruct, data) {
 		d3.select(self.frameElement).style("height", diameter + "px");
 }
 
-var waiting = false;
+function drawTable(struct, data) {
+	var table = $(struct);
+	table.empty();
+	var valueCount = 0;
+	data.rows.sort(function(a,b){return b.value-a.value})
+	$.each(data.rows, function(index, entry){
+		valueCount = valueCount + entry.value
+		var row = $("<tr><td>"+entry.key+"</td><td>"+entry.value+"</td></tr>");
+		table.append(row);
+	})
+	var row = $("<tr style=\"border-top: 1px solid #000;\"><td>Gesamt</td><td>"+valueCount+"</td></tr>");
+	table.append(row);
+}
+
 function refreshStats() {
 	$.getJSON("http://couchdb.pajowu.de/neulandeuphonie/_design/api/_view/count_host_word_replacements?group_level=1", function(data){
 		$.each(data.rows, function(index, entry){
@@ -94,66 +106,17 @@ function refreshStats() {
 			if (!/[0-9]/.test(hn[0].charAt(0))) entry.key[0] = hostname;
 		})
 
-		var table = $("table#wortUrlContent");
-		table.empty();
-		var valueCount = 0;
-		data.rows.sort(function(a,b){return b.value-a.value})
-		$.each(data.rows, function(index, entry){
-			valueCount = valueCount + entry.value
-			var row = $("<tr><td>"+entry.key+"</td><td>"+entry.value+"</td></tr>");
-			table.append(row);
-		})
-		var row = $("<tr style=\"border-top: 1px solid #000;\"><td>Gesamt</td><td>"+valueCount+"</td></tr>");
-		table.append(row);
+		drawTable("table#wortUrlContent", data);
 
 		drawChart("div#wortUrlContent", data);
 		})
 
 	$.getJSON( "http://couchdb.pajowu.de/neulandeuphonie/_design/api/_view/count_word_replacements?group_level=1" , function(data){ 
-		
-		var table = $("table#wortAnzahlContent");
-		table.empty();
-		var valueCount = 0;
-		data.rows.sort(function(a,b){return b.value-a.value})
-		$.each(data.rows, function(index, entry){
-			valueCount = valueCount + entry.value
-			var row = $("<tr><td>"+entry.key+"</td><td>"+entry.value+"</td></tr>");
-			table.append(row);
-		})
-		var row = $("<tr style=\"border-top: 1px solid #000;\"><td>Gesamt</td><td>"+valueCount+"</td></tr>");
-		table.append(row);
+
+		drawTable("table#wortAnzahlContent", data);
 
 		drawChart("div#wortAnzahlContent", data);
 	})
 }
 
 refreshStats();
-
-$(window).scroll(function() {
-    var windscroll = $(window).scrollTop();
-
-    if (windscroll >= 200) {
-        
-        $('.content .pad-section').each(function(i) {
-            if ($(this).position().top <= windscroll) {
-                $('.nav li.active').removeClass('active');
-                $('.nav li').eq(i).addClass('active');
-            }
-        });
-
-    } else {
-
-        $('nav').removeClass('fixed');
-        $('nav a.active').removeClass('active');
-        $('nav a:first').addClass('active');
-    }
-
-}).scroll();
-
-$('body').delegate('nav a', 'click', function(){
-  	event.preventDefault();
-    $('html,body').stop().animate({
-          scrollTop: $($(this).attr('href')).offset().top - $("nav")[0].getBoundingClientRect().bottom
-        }, 500, 'easeInOutCubic');
-        
-});
