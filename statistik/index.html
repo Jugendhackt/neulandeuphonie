@@ -31,8 +31,8 @@
 
 		            <div class="collapse navbar-collapse" id="navbar-collapse-main">
 		                <ul class="nav navbar-nav navbar-right page-scroll">
-		                    <li class="active bold replaced_words" onclick='$("div.sum_words").hide(); $("div.replaced_words").show(); $(".nav li.sum_words").removeClass("active"); $(".nav li.replaced_words").addClass("active");'><a>Ersetze Wörter</a></li>
-		                    <li class="active bold sum_words" onclick='$("div.replaced_words").hide(); $("div.sum_words").show(); $(".nav li.replaced_words").removeClass("active"); $(".nav li.sum_words").addClass("active");'><a>Anzahl der Wörter</a></li>
+		                    <li class="active bold sum_words"  onclick='$("div.sum_words").hide(); $("div.replaced_words").show(); $(".nav li.sum_words").addClass("active"); $(".nav li.replaced_words").removeClass("active");'><a href="#sum_words">Anzahl der Wörter</a></li>
+		                    <li class="bold replaced_words" onclick='$("div.sum_words").show(); $("div.replaced_words").hide(); $(".nav li.replaced_words").addClass("active"); $(".nav li.sum_words").removeClass("active");'><a href="#replaced_words">Ersetze Wörter</a></li>
 		                </ul>
 		            </div><!-- /.navbar-collapse -->
 		        </div><!-- /.container-fluid -->
