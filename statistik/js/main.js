@@ -36,12 +36,12 @@ function drawChart(struct, data) {
 
 		//draw chart
 		var diameter = $(struct).width(),
-		format = d3.format(",d"),
+			format = d3.format(",d"),
     		color = d3.scale.category20c();
 		var bubble = d3.layout.pack()
     			.sort(null)
     			.size([diameter,diameter])
-			.padding(1.5);
+				.padding(10);
 		var svg = d3.select(struct).append("svg")
 			.attr("width", diameter)
 			.attr("height", diameter)
