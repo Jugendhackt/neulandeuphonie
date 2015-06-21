@@ -1,0 +1,8 @@
+{
+	"domains": 0,
+	"children": [
+		{"name": "com.tw"},
+		{"name": "co.uk"},
+		{"name": "de.com"}
+	]
+}

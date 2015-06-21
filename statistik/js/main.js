@@ -97,26 +97,48 @@ function drawTable(struct, data) {
 }
 
 function refreshStats() {
+	//replaced_words
 	$.getJSON("http://couchdb.pajowu.de/neulandeuphonie/_design/api/_view/count_host_word_replacements?group_level=1", function(data){
+
 		$.each(data.rows, function(index, entry){
 			//split key into parts seperated at points
 			var hn = entry.key[0].split('.').reverse();
 			var hostname = hn[1] + "." + hn[0];
-			//check if hostname is a ip
-			if (!/[0-9]/.test(hn[0].charAt(0))) entry.key[0] = hostname;
-		})
+			//is an extended url
+			var isDomain = 0;
+			$.ajax({
+    			url: "./json/domains.json",
+    			async: false,
+    			dataType: 'json',
+    			success: function(domains) {
+    				$.each(domains.children, function(_index, domainsEntry) {
+						for (i in domainsEntry) {
+							if (hostname == domainsEntry[i]) isDomain = 1;
+						}
+					});
+    			}
+    		});
+			//if not ip show only hostname
+			if (!/[0-9]/.test(hn[0].charAt(0)) & !isDomain) entry.key[0] = hostname;
+			else if (isDomain) entry.key[0] = hn[2] + "." + hostname;
+				//else isIp do nothing
+		});
 
-		drawTable("table#wortUrlContent", data);
+		drawTable(".replaced_words table#content", data);
 
-		drawChart("div#wortUrlContent", data);
-		})
+		drawChart(".replaced_words div#content", data);
 
+	});
+
+	//sum_words
 	$.getJSON( "http://couchdb.pajowu.de/neulandeuphonie/_design/api/_view/count_word_replacements?group_level=1" , function(data){ 
 
-		drawTable("table#wortAnzahlContent", data);
+		drawTable(".sum_words table#content", data);
 
-		drawChart("div#wortAnzahlContent", data);
-	})
+		drawChart(".sum_words div#content", data);
+
+	});
+
 }
 
 refreshStats();
