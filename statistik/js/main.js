@@ -96,7 +96,7 @@ function drawTable(struct, data) {
 	table.append(row);
 }
 
-function refreshStats() {
+function stats() {
 	//replaced_words
 	$.getJSON("http://couchdb.pajowu.de/neulandeuphonie/_design/api/_view/count_host_word_replacements?group_level=1", function(data){
 
@@ -141,4 +141,4 @@ function refreshStats() {
 
 }
 
-refreshStats();
+stats();
