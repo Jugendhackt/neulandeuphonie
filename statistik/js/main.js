@@ -70,7 +70,6 @@ function drawChart(struct, data) {
 		.style("fill", function(d) { return color(d.packageName); });
 
 	node.append("text")
-		.attr("dy", ".5em")
 		.style("text-anchor", "middle")
 		.text(function(d) { return d.className.substring(0, d.r / 3); });
 
@@ -106,9 +105,9 @@ function drawTable(struct, data) {
 	table.append(row);
 }
 
-function stats() {
+function stats(rw, sw) {
 	//replaced_words
-	$.getJSON("http://couchdb.pajowu.de/neulandeuphonie/_design/api/_view/count_host_word_replacements?group_level=1", function(data){
+	if(rw) $.getJSON("http://couchdb.pajowu.de/neulandeuphonie/_design/api/_view/count_host_word_replacements?group_level=1", function(data){
 
 		$.each(data.rows, function(index, entry){
 			//split key into parts seperated at points
@@ -134,21 +133,27 @@ function stats() {
 				//else isIp do nothing
 		});
 
-		drawTable(".replaced_words table#content", data);
+		drawTable(".replaced_words table", data);
 
-		drawChart(".replaced_words div#content", data);
+		drawChart(".replaced_words div.content", data);
 
-	});
+	});;
 
 	//sum_words
-	$.getJSON( "http://couchdb.pajowu.de/neulandeuphonie/_design/api/_view/count_word_replacements?group_level=1" , function(data){ 
+	if(sw) $.getJSON( "http://couchdb.pajowu.de/neulandeuphonie/_design/api/_view/count_word_replacements?group_level=1" , function(data){ 
 
-		drawTable(".sum_words table#content", data);
+		drawTable(".sum_words table", data);
 
-		drawChart(".sum_words div#content", data);
+		drawChart(".sum_words div.content", data);
 
-	});
+	});;
 
 }
 
-stats();
+// initial draw of stats
+stats(1,1);
+
+// execute at startup to hide div.sum_words
+$(document).ready(function() {
+	$("div.sum_words").hide();
+});
