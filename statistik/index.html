@@ -26,11 +26,11 @@
 		            </button>
 		            <a class="navbar-brand bold" href="#">Neulandeuphonie</a>
 		        </div>
-
+<!--$("div.sum_words").hide(); $("div.replaced_words").show();	$("div.sum_words").show(); $("div.replaced_words").hide();-->
 		        <div class="collapse navbar-collapse" id="navbar-collapse-main">
 		            <ul class="nav navbar-nav navbar-right page-scroll bold">
-		                <li class="active sum_words"  onclick='$("div.sum_words").hide(); $("div.replaced_words").show(); $(".nav li.sum_words").addClass("active"); $(".nav li.replaced_words").removeClass("active");'><a href="#replaced_words">Anzahl der ersetzten Wörter pro URL</a></li>
-		                <li class="replaced_words" onclick='stats(0,1); $("div.sum_words").show(); $("div.replaced_words").hide(); $(".nav li.replaced_words").addClass("active"); $(".nav li.sum_words").removeClass("active");'><a href="#sum_words">Ersetzte Wörter und Anzahl</a></li>
+		                <li class="active sum_words"  onclick='changeChart(1,0);'><a href="#replaced_words">Anzahl der ersetzten Wörter pro URL</a></li>
+		                <li class="replaced_words" onclick='changeChart(0,1);'><a href="#sum_words">Ersetzte Wörter und Anzahl</a></li>
 		            </ul>
 		        </div><!-- /.navbar-collapse -->
 		    </div><!-- /.container-fluid -->

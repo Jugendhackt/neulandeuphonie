@@ -157,3 +157,15 @@ stats(1,1);
 $(document).ready(function() {
 	$("div.sum_words").hide();
 });
+
+function changeChart(rw, sw) {
+	if(rw) {
+		$("div.sum_words").hide(); $("div.replaced_words").show();
+		$(".nav li.sum_words").addClass("active"); $(".nav li.replaced_words").removeClass("active");
+	};
+	if(sw) {
+		$("div.sum_words").show(); $("div.replaced_words").hide();
+		$(".nav li.replaced_words").addClass("active"); $(".nav li.sum_words").removeClass("active");
+		stats(0,1);
+	};
+}
