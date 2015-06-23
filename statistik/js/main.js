@@ -167,5 +167,6 @@ function changeChart(rw, sw) {
 		$("div.sum_words").show(); $("div.replaced_words").hide();
 		$(".nav li.replaced_words").addClass("active"); $(".nav li.sum_words").removeClass("active");
 	};
-	stats(rw, sw);
+	//dont create new chart for replaced_words as this is already one cleaded
+	if(!rw) stats(rw, sw);
 }
