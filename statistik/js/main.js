@@ -151,13 +151,15 @@ function stats(rw, sw) {
 }
 
 // initial draw of stats
-stats(1,1);
+stats(1,0);
 
 // execute at startup to hide div.sum_words
 $(document).ready(function() {
 	$("div.sum_words").hide();
 });
 
+var clicked = [];
+clicked[1] = 0; //sw
 function changeChart(rw, sw) {
 	if(rw) {
 		$("div.sum_words").hide(); $("div.replaced_words").show();
@@ -167,6 +169,10 @@ function changeChart(rw, sw) {
 		$("div.sum_words").show(); $("div.replaced_words").hide();
 		$(".nav li.replaced_words").addClass("active"); $(".nav li.sum_words").removeClass("active");
 	};
+	//deactivate recreating charts
+	if (sw & clicked[1]) sw = 0;
 	//dont create new chart for replaced_words as this is already one cleaded
 	if(!rw) stats(rw, sw);
+
+	clicked[1] = 1;
 }
