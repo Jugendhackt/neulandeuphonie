@@ -166,6 +166,6 @@ function changeChart(rw, sw) {
 	if(sw) {
 		$("div.sum_words").show(); $("div.replaced_words").hide();
 		$(".nav li.replaced_words").addClass("active"); $(".nav li.sum_words").removeClass("active");
-		stats(0,1);
 	};
+	stats(rw, sw);
 }
