@@ -2,7 +2,7 @@ function sort(data) {
 	//make all same keys summarized
 	var diff = 0;
 	if (/\[/.test(data.rows[0].key)) diff = 1;
-	var newObj = {};
+	var newObj = [];
 	for(i in data.rows){
 		var item = data.rows[i];
 		var item2;
@@ -16,8 +16,9 @@ function sort(data) {
 	for(i in newObj) result.rows.push({'key':i,'value':newObj[i]});
 
 	//sort
-	result.rows.sort(function(a,b){return b.value-a.value})
+	result.rows.sort(function(a,b){return b.value-a.value});
 	return [result, newObj];
+
 }
 
 function drawChart(struct, data) {
@@ -97,11 +98,11 @@ function drawTable(struct, data) {
 	table.empty();
 	var sum = 0;
 	$.each(result.rows, function(index, entry){
-		sum = sum + entry.value
+		sum += entry.value;
 		var row = $("<tr><td>"+entry.key+"</td><td>"+entry.value+"</td></tr>");
 		table.append(row);
 	})
-	var row = $("<tr style=\"border-top: 0.063em solid #000;\"><td>Gesamt</td><td>"+sum+"</td></tr>");
+	var row = $("<tr style='border-top: 0.063em solid #000;'><td>Gesamt</td><td>"+sum+"</td></tr>");
 	table.append(row);
 }
 
@@ -110,7 +111,11 @@ function stats(rw, sw) {
 	if(rw) $.getJSON("http://couchdb.pajowu.de/neulandeuphonie/_design/api/_view/count_host_word_replacements?group_level=1", function(data){
 
 		$.each(data.rows, function(index, entry){
-			//split key into parts seperated at points
+			//remove port
+			var dp = entry.key[0].split(':').reverse();
+			if (dp[1] === undefined) entry.key[0] = dp[0];
+			else entry.key[0] = dp[1];
+			//split at '.'
 			var hn = entry.key[0].split('.').reverse();
 			var hostname = hn[1] + "." + hn[0];
 			//is an extended url
