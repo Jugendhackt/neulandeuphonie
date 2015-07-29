@@ -9,26 +9,37 @@
 		<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
 		<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js" charset="utf-8"></script>
-		<script type="text/javascript" src="js/main.js"></script>
+		<script type="text/javascript" src="../js/main.js"></script>
 
-		<link rel="stylesheet" href="https://bootswatch.com/flatly/bootstrap.min.css">
-		<link rel="stylesheet" type="text/css" href="./css/main.css" />
+    	<link rel="stylesheet" href="https://bootswatch.com/flatly/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="../css/main.css" />
 	</head>
 	<body>
 		<div class="wrapper-masthead">
       <div class="container">
         <header class="masthead clearfix">
           <nav>
-          	<a href="">Neulandeuphonie</a>
-            <a href="replacedWords/index.html">Ersetzte Wörter pro URL</a>
-            <a href="sumWords/index.html">Anzahlen der ersetzten Wörter</a>
+            <a href="">Neulandeuphonie</a>
+            <a href="../replacedWords/index.html">Ersetzte Wörter pro URL</a>
+            <a href="../sumWords/index.html">Anzahlen der ersetzten Wörter</a>
           </nav>
         </header>
       </div>
     </div>
 
     <div id="main" role="main" class="container">
-    	text
+      <div class="replaced_words">
+        <div class="pad-section-5 col-md-8">
+          <div class="content"></div>
+        </div>
+        <div class="pad-section-5 col-md-4">
+          <table class="table table-striped"></table>
+        </div>
+      </div>
     </div>
+
+    <script type="text/javascript">
+      stats(1,0);
+    </script>
 	</body>
 </html>
