@@ -110,7 +110,7 @@ function stats(rw, sw) {
 	//replaced_words
 	if(rw) $.getJSON("http://couchdb.pajowu.de/neulandeuphonie/_design/api/_view/count_host_word_replacements?group_level=1", function(data){
 
-		$.each(data.rows, function(index, entry){
+		$.each(data.rows, function(_index, entry){
 			//remove port
 			var dp = entry.key[0].split(':').reverse();
 			if (dp[1] === undefined) entry.key[0] = dp[0];
@@ -119,22 +119,23 @@ function stats(rw, sw) {
 			var hn = entry.key[0].split('.').reverse();
 			var hostname = hn[1] + "." + hn[0];
 			//is an extended url
-			var isDomain = 0;
+			var extendedDomain = 0;
 			$.ajax({
-				url: "./json/domains.json",
+				url: "../json/domains.json",
 				async: false,
 				dataType: 'json',
-				success: function(domains) {
-					$.each(domains.children, function(_index, domainsEntry) {
-						for (i in domainsEntry) {
-							if (hostname == domainsEntry[i]) isDomain = 1;
+				success: function(extended) {
+					$.each(extended.children, function(__index, extendedEntry) {
+						for (i in extendedEntry) {
+							if (hostname == extendedEntry[i]) extendedDomain = 1;
 						}
 					});
 				}
 			});
-			//if not ip show only hostname
-			if (!/[0-9]/.test(hn[0].charAt(0)) & !isDomain) entry.key[0] = hostname;
-			else if (isDomain) entry.key[0] = hn[2] + "." + hostname;
+			//if not ip and not extendedDomain show only hostname
+			if (!/[0-9]/.test(hn[0].charAt(0)) & !extendedDomain) entry.key[0] = hostname;
+			// if extendedDomain also show part befor extended domain
+			else if (extendedDomain) entry.key[0] = hn[2] + "." + hostname;
 				//else isIp do nothing
 		});
 
@@ -154,11 +155,3 @@ function stats(rw, sw) {
 	});;
 
 }
-
-// initial draw of stats
-// stats(0,1);
-
-// // execute at startup to hide div.sum_words
-// $(document).ready(function() {
-// 	$("div.sum_words").hide();
-// });
