@@ -61,3 +61,4 @@ target/
 
 # ini with passwords
 local.ini
+default.ini
