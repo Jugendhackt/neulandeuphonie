@@ -62,3 +62,12 @@ target/
 # ini with passwords
 local.ini
 default.ini
+
+# latex stuff
+*.aux
+*.nav
+*.out
+*.pdf
+*.snm
+*.toc
+*.xwm
