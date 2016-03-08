@@ -1,0 +1,9 @@
+# latex stuff
+*.aux
+*.log
+*.nav
+*.out
+*.snm
+*.toc
+*.xwm
+*.dvi
