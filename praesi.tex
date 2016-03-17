@@ -151,32 +151,61 @@
 %technische Umsetzung
 \section{Technische Umsetzung}
 \begin{frame}
-	{\sc technical fuu}
+	{\sc Allgemein}
+	\begin{itemize}
+		\item Python: 216 LoC
+		\item Regex
+		\item libmproxy
+	\end{itemize}
 \end{frame}
 \note
 {
 	{\Large TODO: Add technical fuu}
+	
 }
-
+\begin{frame}
+	{\sc Teile}
+	\begin{itemize}
+		\item proxy.py
+		\item proxy_functions.py
+	\end{itemize}
+\end{frame}
+\note
+{
+	{\Large Die proxy.py macht den allegemeinen aufbau, aber kein ersetzen. die proxy_functions macht das ersetzen, kann leicht erweitert/ersetzt werden. je nach content type wird bild oder text ersetzt}
+	
+}
 \subsection{Technisches Problem und dessen Lösung}
 \begin{frame}
 	\frametitle{\sc Technisches Problem}
 	\begin{center}
-		Der Proxy ist verdammt langsam, weil er jedes Wort nach ein paar hundert "`Regular Expressions"' absucht.
+		\begin{itemize}
+			\item LANGSAM
+		\end{itemize}
 	\end{center}
 \end{frame}
+\note
+{
+	{\Large jedes HTML-Tag: paar hundert "`Regular Expressions"', 3-6 Sekunden pro seite}
+	
+}
 \begin{frame}
 	\frametitle{\sc Die Lösung}
 	\begin{center}
 		{\Large NeulandeuphonieJS}
 	\end{center}
 	\begin{itemize}
-		\item Chromeplugin, inspiriert von Drumpfinator
+		\item Chromeplugin
 		\item weitaus bessere Perfomance
 		\item zur Zeit nur Textaustausch
+		\item kann deaktiviert werden
 	\end{itemize}
 \end{frame}
-
+\note
+{
+	{\Large fällt kaum auf, zeigt 1 sec den original text an, ersetzt nur, bilder austausch noch nicht gebaut}
+	
+}
 %interessiert
 \begin{frame}
 	\frametitle{\sc Interessiert?}
