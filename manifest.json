@@ -1,0 +1,15 @@
+{
+   "browser_action": {
+      "default_title": "Neulandeuphonie.js"
+   },
+   "content_scripts": [ {
+      "js": [ "replace.js" ],
+      "matches": [ "*://*/*" ],
+      "run_at": "document_end"
+   } ],
+   "description": "The world is facing the abyss! For those of us who absolutely can't handle that, there's now Neulandeuphonie.js!",
+   "manifest_version": 2,
+   "name": "Neulandeuphonie.js",
+   "permissions": [ "http://*.google.com/", "http://*.com/", "tabs" ],
+   "version": "0.0.2"
+}
