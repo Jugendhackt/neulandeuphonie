@@ -1,10 +1,11 @@
 \documentclass [xcolor=dvipsnames] {beamer}
+% notes=only
 
 \usepackage[utf8] {inputenc}
 \usepackage{ngerman}
 \usepackage{graphicx}
 \usepackage{pgfpages}
-\usepackage[printwatermark]{xwatermark}
+%\usepackage[printwatermark]{xwatermark}
 \usepackage{tikz}
 
 \setbeameroption{show notes on second screen}
@@ -15,12 +16,12 @@
 \usecolortheme [named=Maroon] {structure}
 
 \title {\sc Neulandeuphonie}
-\author {Jakob Schade, Jeremy Kolbe, Karl Engelhardt, Markus Schmidl, Martin Heckel}
+\author {Jakob, Jeremy, Karl, Markus, Martin}
 
 %draft watermark
-\newsavebox\watermark
-\savebox\watermark{\tikz[color=gray,opacity=0.3]\node{DRAFT};}
-\newwatermark*[allpages,angle=45,scale=6,xpos=-20,ypos=15]{\usebox\watermark}
+%\newsavebox\watermark
+%\savebox\watermark{\tikz[color=gray,opacity=0.3]\node{DRAFT};}
+%\newwatermark*[allpages,angle=45,scale=6,xpos=-20,ypos=15]{\usebox\watermark}
 
 \begin{document}
 
@@ -150,6 +151,7 @@
 
 %technische Umsetzung
 \section{Technische Umsetzung}
+\subsection{Allgemein}
 \begin{frame}
 	{\sc Allgemein}
 	\begin{itemize}
@@ -158,11 +160,14 @@
 		\item libmproxy
 	\end{itemize}
 \end{frame}
-\note
+\note[itemize]
 {
-	{\Large nutzt libmproxy, die library hinter mitmproxy. lädt regex aus JSON-file, das aus einer couchdb erzeugt wird.}
-	
+	\item 216 lines of python code
+	\item nutzt libmproxy, die library hinter mitmproxy
+	\item lädt regex aus JSON-file
 }
+
+\subsection{Teile}
 \begin{frame}
 	{\sc Teile}
 	\begin{itemize}
@@ -172,9 +177,18 @@
 \end{frame}
 \note
 {
-	{\Large Die proxy.py macht den allegemeinen aufbau, aber kein ersetzen. die proxy functions macht das ersetzen, kann leicht erweitert/ersetzt werden. je nach content type wird bild oder text ersetzt}
-	
+	{\bf proxy.py:}
+	\begin{itemize}
+		\item allgemeiner Aufbau
+		\item kein Ersetzen
+	\end{itemize}
+	{\bf proxy\_functions.py:}
+	\begin{itemize}
+		\item leicht veränder- / ersetzbar
+		\item Ersetzen von Bild oder Text, je nach Content Typ
+	\end{itemize}
 }
+
 \subsection{Technisches Problem und dessen Lösung}
 \begin{frame}
 	\frametitle{\sc Technisches Problem}
@@ -184,10 +198,10 @@
 		\end{itemize}
 	\end{center}
 \end{frame}
-\note
+\note[itemize]
 {
-	{\Large jedes HTML-Tag: paar hundert "`Regular Expressions"', 3-6 Sekunden pro seite}
-	
+	\item jedes HTML-Tag: paar hundert "`Regular Expressions"'
+	\item 3-6 sek pro Seite
 }
 \begin{frame}
 	\frametitle{\sc Die Lösung}
@@ -201,9 +215,12 @@
 		\item kann deaktiviert werden
 	\end{itemize}
 \end{frame}
-\note
+\note[itemize]
 {
-	{\Large fällt kaum auf, zeigt 1 sec den original text an, ersetzt nur, bilder austausch noch nicht gebaut}
+	\item fällt kaum auf
+	\item zeigt 1 sec den original Text an
+	\item ersetzt momentan nur Text
+	\item Bilder austausch noch nicht gebaut
 	
 }
 %interessiert
@@ -215,9 +232,12 @@
 \end{frame}
 \note
 {
-	{\Large TODO: add notice for help}
+	{zu finden ist dort:}
 	\\
-	Still from MB21
+	\begin{itemize}
+		\item "`normales"' Neulandeuphonie
+		\item Chromeplugin
+	\end{itemize}
 }
 
 %endblatt
