@@ -8,7 +8,7 @@
 %\usepackage[printwatermark]{xwatermark}
 \usepackage{tikz}
 
-\setbeameroption{show notes on second screen}
+%\setbeameroption{show notes on second screen}
 
 %\usetheme {Antibes}
 %\usetheme{PaloAlto}
@@ -31,9 +31,21 @@
 \end{frame}
 
 %toc
+%\begin{frame}
+%	\tableofcontents
+%\end{frame}
+
+\subsubsection{Unser Motto}
 \begin{frame}
-	\tableofcontents
+	\frametitle{\sc Motto}
+	\begin{center}
+		{\bf Die Welt steht vor dem Abgrund!}\\ \ \\ Für diejenigen unter uns, die das absolut nicht verarbeiten können, gibt es nun Neulandeuphonie!
+	\end{center}
 \end{frame}
+\note
+{
+	 {\bf Die Welt steht vor dem Abgrund!}\\ \ \\ Für diejenigen unter uns, die das absolut nicht verarbeiten können, gibt es nun Neulandeuphonie!
+}
 
 %wer
 \section{Wer?}
@@ -89,21 +101,6 @@
 	\item Wortzensur
 }
 
-\subsubsection{Unser Motto}
-\begin{frame}
-	\frametitle{\sc Motto}
-	\begin{center}
-		\only<1>
-		{
-			{\bf Die Welt steht vor dem Abgrund!}\\ \ \\ Für diejenigen unter uns, die das absolut nicht verarbeiten können, gibt es nun Neulandeuphonie!
-		}
-		\only<2>
-		{
-			Neulandeuphonie is a censoring proxy that replaces bad words with good ones and all images with images of cats (everybody loves cats). This change in site demonstrates how easy it is to manipulte website and how people need to live in counries which are known for blocking (e.g. the majority of China).
-		}
-	\end{center}
-\end{frame}
-
 %methoden
 \section{Methoden}
 \subsection{Wortzensur}
@@ -134,18 +131,9 @@
 \begin{frame}
 	{\sc Bildzensur}
 	\begin{center}
-		\only<1>
-		{
-			\includegraphics[width=10cm]{osm-1}
-		}
-		\only<2>
-		{
-			{\Large zu}
-		}
-		\only<3>
-		{
-			\includegraphics[width=10cm]{osm-mod-1}
-		}
+		\includegraphics[width=5cm]{osm-1}
+		\hspace*{.5cm}
+		\includegraphics[width=5cm]{osm-mod-1}
 	\end{center}
 \end{frame}
 
@@ -162,6 +150,7 @@
 \end{frame}
 \note[itemize]
 {
+	\item {\bf Technische Umsetzung}
 	\item 216 lines of python code
 	\item nutzt libmproxy, die library hinter mitmproxy
 	\item lädt regex aus JSON-file
