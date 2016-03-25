@@ -4,6 +4,7 @@
    },
    "content_scripts": [ {
       "js": [ "replace.js" ],
+      "css": ["censor.css"],
       "matches": [ "*://*/*" ],
       "run_at": "document_end"
    } ],

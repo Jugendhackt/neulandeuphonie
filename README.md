@@ -8,7 +8,6 @@ Neulandeuphonie is a censoring extension that replaces bad words with good ones 
 ## Installing
 To install you can just load this directory as a unpacked chrome extension.
 
-
 ## Examples
 
 ![Example](https://github.com/Jugendhackt/neulandeuphonie/raw/master/public/combined.png "Example 1")
