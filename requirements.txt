@@ -5,7 +5,6 @@ certifi==2015.4.28
 cffi==1.1.1
 ConfigArgParse==0.9.3
 configparser
-cryptography==0.9.1
 enum34==1.0.4
 hpack==1.0.1
 idna==2.0
