@@ -16,9 +16,9 @@ After that you can install the dependencies from the requirements.txt via
     pip install -r requirements.txt
     
 ## Running it
-To run neulandeuphonie you simply start the proxy.py executing
+To run neulandeuphonie you simply start the proxy by executing
     
-    python proxy.py
+    mitmdump -s neulandeuph.py
 
 It will start a proxy on *:8080 which you can set in your browser.
 

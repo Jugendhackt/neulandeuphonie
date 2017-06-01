@@ -1,13 +1,12 @@
 import re
-from wand.image import Image
+from PIL import Image
 import io
 import requests
 import os
 import random
 import sys
-from libmproxy.protocol.http import HTTPResponse
-from netlib.odict import ODictCaseless
-import StringIO
+from mitmproxy.http import HTTPResponse
+import io
 from bs4 import BeautifulSoup, NavigableString
 import linecache
 
@@ -19,7 +18,7 @@ def PrintException():
     filename = f.f_code.co_filename
     linecache.checkcache(filename)
     line = linecache.getline(filename, lineno, f.f_globals)
-    print 'EXCEPTION IN ({}, LINE {} "{}"): {}'.format(filename, lineno, line.strip(), exc_obj)
+    print('EXCEPTION IN ({}, LINE {} "{}"): {}'.format(filename, lineno, line.strip(), exc_obj))
 
 
 def getsizes(image_data):
@@ -28,38 +27,43 @@ def getsizes(image_data):
 
 
 def resizeImg(sourceFile, width, height):
-    img = Image(filename=sourceFile)
-    if width > height:
+    img = Image.open(sourceFile)
+    """if width > height:
         img.transform(resize="%d" % (width))
     else:
-        img.transform(resize="x%d" % (height))
+        img.transform(resize="x%d" % (height))"""
+    img.thumbnail((width, height))
     wd = img.width - width
     hd = img.height - height
-    img.crop(wd / 2, hd / 2, width=width, height=height)
+    img.crop((wd / 2, hd / 2, width, height))
     img.format = 'jpeg'
     return img
 
 
 def replaceImage(flow):
-    attrs = dict((x.lower(), y) for x, y in flow.response.headers)
+    attrs = dict((x.lower(), y) for x, y in flow.response.headers.items())
     if "content-type" in attrs:
         if "image" in attrs['content-type'] and not "svg" in attrs['content-type']:
-            if flow.response.code == 304:
+            if flow.response.status_code == 304:
                 content = flow.response.content
             else:
                 content = requests.get(flow.request.url).content
             if len(content) == 0:
                 return flow
             try:
-                img = Image(file=io.BytesIO(content))
+                img = Image.open(io.BytesIO(content))
                 size = img.size
                 if size[0] > 40 and size[1] > 40:
                     filename = random.choice(os.listdir("images"))
                     img = resizeImg("images/" + filename, size[0], size[1])
-                    content = img.make_blob()
-                    responseHeaders = ODictCaseless([('Content-Length', len(content))])
-                    responseHeaders['Content-Type'] = ["image/jpg"]
-                    resp = HTTPResponse([1, 1], 200, 'OK', responseHeaders, content)
+                    #content = img.make_blob()
+                    imgByteArr = io.BytesIO()
+                    img.save(imgByteArr, format='JPEG')
+                    content = imgByteArr.getvalue()
+                    responseHeaders = {'Content-Length':str(len(content))}
+                    responseHeaders['Content-Type'] = "image/jpg"
+                    #import pdb;pdb.set_trace()
+                    resp = HTTPResponse.make(status_code=200, headers=responseHeaders, content=content)
                     flow.response = resp
 
             except:
@@ -76,23 +80,24 @@ def adjustCasing(original, to_adjust):
 
 
 def censorText(flow, tag_expressions, content_expressions, stylesheet, send_stats, replace=False):
-    attrs = dict((x.lower(), y) for x, y in flow.response.headers)
+    attrs = dict((x.lower(), y) for x, y in flow.response.headers.items())
     if 'content-type' in attrs:
         if ('text/html' in attrs['content-type']):
             if send_stats:
                 stat = {"type": "statistic", "changes": []}
                 stat['url'] = flow.request.url
-            flow.response.headers['content-type'] = ["text/html"]
-            if 'content-encoding' in flow.response.headers.keys():
+            flow.response.headers['content-type'] = "text/html"
+            if 'content-encoding' in list(flow.response.headers.keys()):
+                import pdb;pdb.set_trace()
                 flow.response.content = flow.response.get_decoded_content()
                 del flow.response.headers['content-encoding']
-            page = BeautifulSoup(flow.response.get_decoded_content())
+            page = BeautifulSoup(flow.response.content.decode())
             lang = detectLanguage(page)
             lang = lang if lang in tag_expressions or lang in content_expressions else tag_expressions['fallback']
             if lang in tag_expressions:
                 for tag in page.findAll(text=True):
                     if type(tag) == NavigableString:
-                        string = unicode(tag.string)
+                        string = str(tag.string)
                         for key, value in tag_expressions[lang]:
                             value_rand = random.choice(value)
                             if not replace:
@@ -104,7 +109,7 @@ def censorText(flow, tag_expressions, content_expressions, stylesheet, send_stat
                                 stats['changes'].append(replace_data[1])
                         tag.string.replace_with(string)
             page = injectCSS(page, stylesheet)
-            flow.response.content = str(page)
+            flow.response.set_content(str(page).encode())
             if lang in content_expressions:
                 for key, value in content_expressions[lang]:
                     flow.response.content = re.sub(key, random.choice(value), flow.response.content)
