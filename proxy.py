@@ -1,21 +1,18 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-import sys; reload(sys); sys.setdefaultencoding("utf-8") # hack to set default encoding
 import json
 import re
-from libmproxy import controller, proxy
-from libmproxy.proxy.server import ProxyServer
+from mitmproxy import controller, proxy
+from mitmproxy.proxy.server import ProxyServer
 import proxy_functions
 import threading
-import ConfigParser
+import configparser as ConfigParser
 import glob
 import os
 
 
-class CensorMaster(controller.Master):
-
+class CensorMaster():
     def __init__(self, server):
-        controller.Master.__init__(self, server)
         self.config = ConfigParser.ConfigParser()
         self.config.read(['default.ini', 'local.ini'])
         self.regex_flags = re.IGNORECASE
