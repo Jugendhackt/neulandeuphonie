@@ -58,10 +58,10 @@ def replaceImage(flow):
                     img = resizeImg("images/" + filename, size[0], size[1])
                     #content = img.make_blob()
                     imgByteArr = io.BytesIO()
-                    img.save(imgByteArr, format='JPEG')
+                    img.save(imgByteArr, format='BMP')
                     content = imgByteArr.getvalue()
                     responseHeaders = {'Content-Length':str(len(content))}
-                    responseHeaders['Content-Type'] = "image/jpg"
+                    responseHeaders['Content-Type'] = "image/bmp"
                     #import pdb;pdb.set_trace()
                     resp = HTTPResponse.make(status_code=200, headers=responseHeaders, content=content)
                     flow.response = resp
@@ -87,9 +87,8 @@ def censorText(flow, tag_expressions, content_expressions, stylesheet, send_stat
                 stat = {"type": "statistic", "changes": []}
                 stat['url'] = flow.request.url
             flow.response.headers['content-type'] = "text/html"
-            if 'content-encoding' in list(flow.response.headers.keys()):
-                import pdb;pdb.set_trace()
-                flow.response.content = flow.response.get_decoded_content()
+            if 'content-encoding' in attrs:
+                flow.response.content = flow.response.get_content()
                 del flow.response.headers['content-encoding']
             page = BeautifulSoup(flow.response.content.decode())
             lang = detectLanguage(page)

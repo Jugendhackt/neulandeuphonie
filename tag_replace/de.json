@@ -1,13 +1,13 @@
 {
     "Drogen": [
-        "Spa\u00df-Artikel"
+        "Spaß-Artikel"
     ],
     "Vorw\u00fcrf": [
         "Scherz",
         "Witz"
     ],
     "kritisch": [
-        "pr\u00e4chtig",
+        "prächtig",
         "wunderbar"
     ],
     "absurd": [
@@ -376,7 +376,7 @@
         "das anderes rechts"
     ],
     "rechts": [
-        "das andere links"    
+        "das andere links"
     ],
     "Rechte": [
         "andere Linke"
@@ -406,7 +406,6 @@
     "May": [
         "July"
     ],
-    "Politik": [],
     "Volk": [
         "Mob"
     ],
@@ -434,5 +433,5 @@
     "Abgrund": [
         "Flachland"
     ]
-    
+
 }
