@@ -87,15 +87,17 @@ def censorText(flow, tag_expressions, content_expressions, stylesheet, send_stat
                 stat = {"type": "statistic", "changes": []}
                 stat['url'] = flow.request.url
             flow.response.headers['content-type'] = "text/html"
+            """
             if 'content-encoding' in attrs:
                 flow.response.content = flow.response.get_content()
                 del flow.response.headers['content-encoding']
+                """
             page = BeautifulSoup(flow.response.content.decode())
             lang = detectLanguage(page)
             lang = lang if lang in tag_expressions or lang in content_expressions else tag_expressions['fallback']
             if lang in tag_expressions:
                 for tag in page.findAll(text=True):
-                    if type(tag) == NavigableString:
+                    if type(tag) == NavigableString and not (hasattr(tag, "parent") and hasattr(tag.parent, "name") and tag.parent.name == 'script'):
                         string = str(tag.string)
                         for key, value in tag_expressions[lang]:
                             value_rand = random.choice(value)
