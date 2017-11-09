@@ -1,5 +1,0 @@
-beautifulsoup4
-lxml
-mitmproxy
-Pillow
-requests
